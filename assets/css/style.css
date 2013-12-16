@@ -1,0 +1,9 @@
+@font-face{font-family:'sg';src:url('../fonts/segoeui.ttf') format('truetype');}
+@font-face{font-family:'sgl';src:url('../fonts/segoeuil.ttf') format('truetype');}
+
+html,body{margin:0;padding:0;width:100%;height:100%;}
+
+/* LOGIN */
+.login-wrapper{display:table;height:100%;width:100%;}
+.login{display:table-cell;vertical-align:middle;width:100%;height:100%;}
+.login > form{background:#999;padding:20px;margin:0 auto;float:none;}
