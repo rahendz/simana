@@ -9,15 +9,19 @@ class Login extends CI_Controller {
 	
 	public function index()
 	{
+		/* INITIATE LOADER */
+
 		$this->load->helper ( "url" );
 
 		$this->load->library ( "parser" );
 
 		$this->load->model ( "mlogin" );
 		
+		/* CHECK USER AUTH */
 
 		if ( $this->mlogin->__is_logged() ) redirect ( "narasumber" );
 		
+		/* PUSH DATA */
 
 		$login["username_error"] = form_error ( "username", "<span class='help-block alert-danger'>", "</span>" );
 
@@ -37,16 +41,17 @@ class Login extends CI_Controller {
 
 			"<span class=\"help-block alert-danger\">Wrong Username or Password</span>" : NULL;
 		
+		/* SET THEME PART */
 
-		$login["get_header"] = $this->parser->parse ( "header", array(), TRUE );
+		$header["site_title"]	= "SIMANA - Login";
+
+		$login["get_header"] = $this->parser->parse ( "header", $header, TRUE );
 		
 		$login["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
+
+		/* LOAD PAGE */
 		
 		return $this->parser->parse ( "login", $login );
 	}
 
-	public function test()
-	{
-		echo "test";
-	}
 }
