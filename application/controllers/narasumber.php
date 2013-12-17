@@ -2,9 +2,15 @@
 
 class Narasumber extends CI_Controller {
 
-	public function __construct(){
+	public function __construct()
+	{
 		parent::__construct();
-		$this->load->model('narasumber_model');
+
+		$this->load->helper ( 'url' );
+
+		$this->load->model ( array ( 'narasumber_model', 'mlogin' ) );
+
+		if ( ! $this->mlogin->__is_logged() ) redirect();
 	}
 
 	public function index(){
