@@ -12,7 +12,7 @@ class Mengajar extends CI_Controller{
 	public function addMengajar(){
 
 		if ($this->input->post('submit')) {
-			
+			//
 		}
 
 		$this->load->view('addMengajar');
