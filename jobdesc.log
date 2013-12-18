@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Login cuma buat admin
 
 - Login					R
@@ -8,3 +9,17 @@ Login cuma buat admin
 	- Sertifikat TOT	R
 - Upload				R
 - Rekap					DR
+=======
+JOB DESCRIPTION
+==================================
+Login cuma buat admin
+
+- Login						R
+- CRUD
+		- Narasumber		D
+		- List TOT			D
+		- Mengajar			D
+		- Sertifikat TOT	R
+- Upload					R
+- Rekap						DR
+>>>>>>> origin/rahendz

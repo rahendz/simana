@@ -1,9 +1,5 @@
-<!doctype>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+{get_header}
+
 	<table>
 		<thead>
 			<tr>
@@ -18,22 +14,23 @@
 		</thead>
 
 		<tbody>
-			<?php $i = 1; foreach ($narasumber->result() as $row) { ?>
+			{narasumber}
+			<?php $i = 1; ?>
 			<tr>
 				<td><?php echo $i++; ?></td>
-				<td><?php echo $row->nama; ?></td>
-				<td><?php echo $row->instansi; ?></td>
-				<td><?php echo $row->lokasi; ?></td>
-				<td><?php echo $row->telp; ?></td>
-				<td><?php echo $row->email; ?></td>
+				<td>{nama}</td>
+				<td>{instansi}</td>
+				<td>{lokasi}</td>
+				<td>{telp}</td>
+				<td>{email}</td>
 				<td>
-					<a href="<?php echo site_url('narasumber/addNarasumber/'.$row->idnarasumber_biodata); ?>">edit</a>| 
-					<a href="<?php echo site_url('narasumber/deleteNarasumber/'.$row->idnarasumber_biodata); ?>" onClick="return confirm('Anda Yakin Akan Dihapus?');">delete</a>| 
-					<a href="<?php echo site_url('narasumber/detailNarasumber/'.$row->idnarasumber_biodata); ?>">detail</a>
+					<a href="<?php echo site_url('narasumber/edit'); ?>/{idnarasumber_biodata}">edit</a>| 
+					<a href="<?php echo site_url('narasumber/delete'); ?>/{idnarasumber_biodata}" onClick="return confirm('Anda Yakin Akan Dihapus?');">delete</a>| 
+					<!-- <a href="<?php echo site_url('narasumber/detail'); ?>/{idnarasumber_biodata}">detail</a> -->
 				</td>
 			</tr>
-			<?php } ?>
+			{/narasumber}
 		</tbody>
 	</table>
-</body>
-</html>
+
+{get_footer}
