@@ -59,7 +59,7 @@ class Narasumber extends CI_Controller {
 
 				redirect();
 
-		$header["site_title"]	= "SIMANA - Tambah Narasumber";
+		$header["site_title"]	= "SIMANA - Edit Narasumber";
 
 		$narasumber = $this->narasumber_model->getById ( $id );
 
