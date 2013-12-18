@@ -30,7 +30,7 @@ class Mengajar extends CI_Controller {
 	{
 
 		if ($this->input->post('submit')) {
-			
+			//
 		}
 
 		$header["site_title"]	= "SIMANA - Add Mengajar";
