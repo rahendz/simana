@@ -8,36 +8,77 @@ class Narasumber extends CI_Controller {
 
 		$this->load->helper ( 'url' );
 
+		$this->load->library ( 'parser' );
+
 		$this->load->model ( array ( 'narasumber_model', 'mlogin' ) );
 
 		if ( ! $this->mlogin->__is_logged() ) redirect();
 	}
 
-	public function index(){
-		$data['narasumber'] = $this->narasumber_model->getAllNarasumber();
-		//print_r($data->result());exit();
-		$this->load->view('narasumber_list',$data);
-	}
-
-	public function addNarasumber($id=""){
-		//print_r($this->input->post());exit();
-		$data['tes'] = "";
-
-		if($this->input->post('submit')){
-			$this->narasumber_model->addNarasumber($this->input->post(),$id);
-			redirect('narasumber');
-		}
-
-		if ($id != "") {
-			$data['data'] = $this->narasumber_model->getNarasumberId($id);
-		}
+	public function index()
+	{
+		$header["site_title"]	= "SIMANA - Narasumber";
 		
-		$this->load->view('addNarasumber',$data);
+		$narasumber['narasumber'] = $this->narasumber_model->get()->result();
+
+		$narasumber["get_header"] = $this->parser->parse ( "header", $header, TRUE );
+
+		$narasumber["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
+		
+		$this->parser->parse ( 'narasumber_list', $narasumber );
 	}
 
-	public function deleteNarasumber($id){
-		$this->narasumber_model->deleteNarasumberById($id);
-		redirect('narasumber');
+	public function add ()
+	{
+		if ( $this->input->post ( 'submit', TRUE ) AND 
+
+			$this->narasumber_model->add ( $this->input->post ( NULL, TRUE ) ) !== FALSE )
+
+				redirect();
+
+		$header["site_title"]	= "SIMANA - Tambah Narasumber";
+
+		$narasumber = array ( 'nama'=>'', 'instansi'=>'', 'lokasi'=>'', 'telp'=>'', 'email'=>'' );
+		
+		$narasumber['action_url'] = current_url();
+
+		$narasumber["get_header"] = $this->parser->parse ( "header", $header, TRUE );
+
+		$narasumber["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
+		
+		$this->parser->parse ( 'narasumber_form', $narasumber );
+	}
+
+	public function edit ( $id = NULL )
+	{
+		if ( is_null ( $id ) ) redirect();
+
+		if ( $this->input->post ( 'submit', TRUE ) AND 
+
+			$this->narasumber_model->edit ( $this->input->post ( NULL, TRUE ), $id ) !== FALSE )
+
+				redirect();
+
+		$header["site_title"]	= "SIMANA - Tambah Narasumber";
+
+		$narasumber = $this->narasumber_model->getById ( $id );
+
+		$narasumber['action_url'] = current_url();
+
+		$narasumber["get_header"] = $this->parser->parse ( "header", $header, TRUE );
+
+		$narasumber["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
+		
+		$this->parser->parse ( 'narasumber_form', $narasumber );
+	}
+
+	public function delete ( $id = NULL )
+	{
+		if ( is_null ( $id ) ) redirect();
+
+		$this->narasumber_model->delete ( $id );
+
+		redirect();
 	}
 
 }
