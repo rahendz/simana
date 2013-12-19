@@ -1,7 +1,13 @@
 {get_header}
 
-oke broda
+<div class="container">
+<div class="row">
+	
+	<div class="col-md-4 sidebar">{get_sidebar}</div>
 
-{get_sidebar}
+	<div class="col-md-8 content">{get_content}</div>
+	
+</div>
+</div>
 
 {get_footer}

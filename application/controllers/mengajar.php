@@ -8,7 +8,7 @@ class Mengajar extends CI_Controller {
 
 		$this->load->helper ( 'url' );
 		
-		$this->load->model ( array ( 'mlogin' ) );
+		$this->load->model ( array ( 'mlogin', 'mapps' ) );
 
 		$this->load->library ( 'parser' );
 
@@ -17,7 +17,11 @@ class Mengajar extends CI_Controller {
 
 	public function index()
 	{
-		$header["site_title"]	= "SIMANA - Mengajar";
+		$header	= $this->mapps->nav_active();
+		
+		$header["site_title"]	= $this->mapps->site_title() . " - " . ucwords ( strtolower ( __CLASS__ ) );
+
+		$header["body_class"]	= " class=\"content\"";
 
 		$mengajar["get_header"] = $this->parser->parse ( "header", $header, TRUE );
 
@@ -33,7 +37,11 @@ class Mengajar extends CI_Controller {
 			//
 		}
 
-		$header["site_title"]	= "SIMANA - Add Mengajar";
+		$header	= $this->mapps->nav_active();
+		
+		$header["site_title"]	= $this->mapps->site_title() . " - Tambah " . ucwords ( strtolower ( __CLASS__ ) );
+
+		$header["body_class"]	= " class=\"content\"";
 
 		$mengajar["get_header"] = $this->parser->parse ( "header", $header, TRUE );
 
@@ -46,7 +54,11 @@ class Mengajar extends CI_Controller {
 	{
 		if ( is_null ( $id ) ) redirect ( "mengajar" );
 
-		$header["site_title"]	= "SIMANA - Edit Mengajar";
+		$header	= $this->mapps->nav_active();
+		
+		$header["site_title"]	= $this->mapps->site_title() . " - Ubah " . ucwords ( strtolower ( __CLASS__ ) );
+
+		$header["body_class"]	= " class=\"content\"";
 
 		$mengajar["get_header"] = $this->parser->parse ( "header", $header, TRUE );
 

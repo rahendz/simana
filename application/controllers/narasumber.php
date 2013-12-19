@@ -10,22 +10,28 @@ class Narasumber extends CI_Controller {
 
 		$this->load->library ( 'parser' );
 
-		$this->load->model ( array ( 'narasumber_model', 'mlogin' ) );
+		$this->load->model ( array ( 'narasumber_model', 'mlogin', 'mapps' ) );
 
 		if ( ! $this->mlogin->__is_logged() ) redirect();
 	}
 
 	public function index()
 	{
-		$header["site_title"]	= "SIMANA - Narasumber";
+		$header	= $this->mapps->nav_active();
 		
-		$narasumber['narasumber'] = $this->narasumber_model->get()->result();
+		$header["site_title"]	= $this->mapps->site_title() . " - " . ucwords ( strtolower ( __CLASS__ ) );
+
+		$content['narasumber'] = $this->narasumber_model->get()->result();
 
 		$narasumber["get_header"] = $this->parser->parse ( "header", $header, TRUE );
 
+		$narasumber["get_sidebar"] = $this->parser->parse ( "sidebar", array(), TRUE );
+
+		$narasumber["get_content"] = $this->parser->parse ( "narasumber_list", $content, TRUE );
+
 		$narasumber["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
 		
-		$this->parser->parse ( 'narasumber_list', $narasumber );
+		$this->parser->parse ( 'index', $narasumber );
 	}
 
 	public function add ()
@@ -36,7 +42,11 @@ class Narasumber extends CI_Controller {
 
 				redirect();
 
-		$header["site_title"]	= "SIMANA - Tambah Narasumber";
+		$header	= $this->mapps->nav_active();
+		
+		$header["site_title"]	= $this->mapps->site_title() . " - Tambah " . ucwords ( strtolower ( __CLASS__ ) );
+
+		$header["body_class"]	= " class=\"content\"";
 
 		$narasumber = array ( 'nama'=>'', 'instansi'=>'', 'lokasi'=>'', 'telp'=>'', 'email'=>'' );
 		
@@ -59,17 +69,25 @@ class Narasumber extends CI_Controller {
 
 				redirect();
 
-		$header["site_title"]	= "SIMANA - Edit Narasumber";
+		$header	= $this->mapps->nav_active();
+		
+		$header["site_title"]	= $this->mapps->site_title() . " - Ubah " . ucwords ( strtolower ( __CLASS__ ) );
 
-		$narasumber = $this->narasumber_model->getById ( $id );
+		$header["body_class"]	= " class=\"content\"";
 
-		$narasumber['action_url'] = current_url();
+		$content = $this->narasumber_model->getById ( $id );
+
+		$content['action_url'] = current_url();
 
 		$narasumber["get_header"] = $this->parser->parse ( "header", $header, TRUE );
 
+		$narasumber["get_content"] = $this->parser->parse ( "narasumber_form", $content, TRUE );
+		
+		$narasumber["get_sidebar"] = $this->parser->parse ( "sidebar", array(), TRUE );
+		
 		$narasumber["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
 		
-		$this->parser->parse ( 'narasumber_form', $narasumber );
+		return $this->parser->parse ( 'index', $narasumber );
 	}
 
 	public function delete ( $id = NULL )

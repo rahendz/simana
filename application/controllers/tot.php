@@ -8,7 +8,7 @@ class Tot extends CI_Controller {
 
 		$this->load->helper ( 'url' );
 		
-		$this->load->model ( array ( 'tot_model', 'mlogin' ) );
+		$this->load->model ( array ( 'tot_model', 'mlogin', 'mapps' ) );
 
 		$this->load->library ( 'parser' );
 
@@ -17,8 +17,12 @@ class Tot extends CI_Controller {
 
 	public function index()
 	{
-		$header["site_title"]	= "SIMANA - Narasumber";
+		$header	= $this->mapps->nav_active();
 		
+		$header["site_title"]	= $this->mapps->site_title() . " - " . strtoupper ( __CLASS__ );
+
+		$header["body_class"]	= " class=\"content\"";
+
 		$tot['tot'] = $this->tot_model->get()->result();
 		
 		$tot["get_header"] = $this->parser->parse ( "header", $header, TRUE );
@@ -36,8 +40,12 @@ class Tot extends CI_Controller {
 
 				redirect ( 'tot' );
 
-		$header["site_title"]	= "SIMANA - Add TOT";
+		$header	= $this->mapps->nav_active();
 		
+		$header["site_title"]	= $this->mapps->site_title() . " - Tambah " . ucwords ( strtolower ( __CLASS__ ) );
+
+		$header["body_class"]	= " class=\"content\"";
+
 		$tot = array ( 'nama' => '' );
 
 		$tot["action_url"] = current_url();
@@ -59,8 +67,12 @@ class Tot extends CI_Controller {
 
 				redirect ( 'tot' );
 
-		$header["site_title"]	= "SIMANA - Edit TOT";
+		$header	= $this->mapps->nav_active();
 		
+		$header["site_title"]	= $this->mapps->site_title() . " - Edit " . ucwords ( strtolower ( __CLASS__ ) );
+
+		$header["body_class"]	= " class=\"content\"";
+
 		$tot = $this->tot_model->getById ( $id );
 
 		$tot["action_url"] = current_url();

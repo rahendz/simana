@@ -1,4 +1,4 @@
-{get_header}
+<div class="content-section">
 
 	<table>
 		<thead>
@@ -33,4 +33,4 @@
 		</tbody>
 	</table>
 
-{get_footer}
+</div>
