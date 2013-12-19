@@ -4,7 +4,7 @@
 
 <div class="login">
 
-<form action="<?php echo site_url("login") ?>" method="post" accept-charset="utf-8" role="form" class="col-md-3">
+<form action="<?php echo site_url("login") ?>" method="post" accept-charset="utf-8" role="form" class="col-md-3 row">
 
 	{userpass_error}
 	
@@ -18,7 +18,7 @@
 		{password_error}
 	</div>
 
-	<button type="submit" class="btn btn-primary">login</button>
+	<button type="submit" class="btn btn-primary pull-right">LOGIN <span class="glyphicon glyphicon-chevron-right"></span></button>
 
 </form>
 
