@@ -3,7 +3,17 @@
 
 html,body{margin:0;padding:0;width:100%;height:100%;}
 
+.ralign{text-align:right !important;}
+.lalign{text-align:left !important;}
+.calign{text-align:center !important;}
+.talign{vertical-align:top !important;}
+.balign{vertical-align:bottom !important;}
+.malign{vertical-align:middle !important;}
+
+/* OVERRIDE */
+.help-block.alert-danger{background:none;}
+
 /* LOGIN */
 .login-wrapper{display:table;height:100%;width:100%;}
-.login{display:table-cell;vertical-align:middle;width:100%;height:100%;}
-.login > form{background:#999;padding:20px;margin:0 auto;float:none;}
+.login{display:table-cell;vertical-align:middle;width:100%;height:100%;background-color:#EFEFEF;}
+.login > form{background:#FFF;padding:25px 30px;margin:0 auto;float:none;box-shadow:0 0 20px rgba(0,0,0,0.1);}
