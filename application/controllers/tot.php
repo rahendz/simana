@@ -78,4 +78,46 @@ class Tot extends CI_Controller {
 		
 		redirect('tot');
 	}
+
+	public function sertifikat ( $type = "view", $kode = NULL )
+	{
+		if ( is_null ( $kode ) AND ( $type === "detail" OR $type === "delete" ) )
+
+			redirect ( "tot/sertifikat" );
+
+		switch ( $type ) :
+
+			case "view": $this->sertifikat_view(); break;
+
+			case "add": $this->sertifikat_add(); break;
+
+			case "detail": return $this->sertifikat_detail ( $kode ); break;
+
+			case "delete": return $this->sertifikat_delete ( $kode ); break;
+
+			default: redirect ( "tot/sertifikat" ); break;
+
+		endswitch;
+	}
+
+		protected function sertifikat_view()
+		{
+			echo "sertifikat view all";
+		}
+
+		protected function sertifikat_add()
+		{
+			echo "sertifikat add";
+		}
+
+		protected function sertifikat_detail()
+		{
+			echo "sertifikat detail";
+		}
+
+		protected function sertifikat_delete()
+		{
+			echo "sertifikat delete";
+		}
+
 }
