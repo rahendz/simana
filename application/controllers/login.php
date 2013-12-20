@@ -19,7 +19,7 @@ class Login extends CI_Controller {
 		
 		/* CHECK USER AUTH */
 
-		if ( $this->mlogin->__is_logged() ) redirect ( "narasumber" );
+		if ( $this->mlogin->__is_logged() ) redirect();
 		
 		/* PUSH DATA */
 

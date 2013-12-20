@@ -1,9 +1,9 @@
 <div class="col-md-5 user">
 	<div class="user-section">
 		<img src="<?php echo base_url("assets/img/avatar.jpg") ?>" class="img-responsive img-circle avatar" />
-		<p>Selamat Datang!</p>
+		<p>Welcome home!</p>
 		<p>You logged as <strong>Admin</strong></p>
-		<p><a href="" class="btn btn-primary logout">&larr; LOGOUT</a></p>
+		<p><a href="<?php echo site_url("logout") ?>" class="btn btn-primary logout"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp; LOGOUT</a></p>
 
 		<div class="copyright">
 			<p>Copyright 2013 <a href="">SIMANA&trade;</a></p>
