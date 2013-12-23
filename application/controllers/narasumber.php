@@ -6,32 +6,54 @@ class Narasumber extends CI_Controller {
 	{
 		parent::__construct();
 
-		$this->load->helper ( 'url' );
-
+		/* LIBRARY */
 		$this->load->library ( 'parser' );
 
+		/* HELPER */
+		$this->load->helper ( 'url' );
+
+		/* MODEL */
 		$this->load->model ( array ( 'narasumber_model', 'mlogin', 'mapps' ) );
 
+		/* CHECKING AUTH USER */
 		if ( ! $this->mlogin->__is_logged() ) redirect();
 	}
 
 	public function index()
 	{
-		$header	= $this->mapps->nav_active();
+		/* VARIABLE */
+		$view_file	= "narasumber_list";
+
+		/* INITIATE HEADER */
+		$header["site_title"]		= $this->mapps->site_title() . " - " . ucwords ( strtolower ( __CLASS__ ) );
+
+		/* INITIATE SIDEBAR */
+		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
+
+		$sidebar["is_narasumber"]	= $this->mapps->__is_active ( "narasumber" );
+
+		$sidebar["is_tot"]			= $this->mapps->__is_active ( "tot" );
+
+		$sidebar["is_mengajar"]		= $this->mapps->__is_active ( "mengajar" );
+
+		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
+
+		/* INITIATE CONTENT */
+		$content['narasumber'] 		= $this->narasumber_model->get()->result();
+
+		/* INITIATE SIDEBAR */
+		$footer['narasumber'] 		= NULL;
+
+		/* INITIATE THEME */
+		$narasumber["get_header"] 	= $this->parser->parse ( "header", $header, TRUE );
+
+		$narasumber["get_sidebar"] 	= $this->parser->parse ( "sidebar", $sidebar, TRUE );
+
+		$narasumber["get_content"] 	= $this->parser->parse ( $view_file, $content, TRUE );
+
+		$narasumber["get_footer"] 	= $this->parser->parse ( "footer", $footer, TRUE );
 		
-		$header["site_title"]	= $this->mapps->site_title() . " - " . ucwords ( strtolower ( __CLASS__ ) );
-
-		$content['narasumber'] = $this->narasumber_model->get()->result();
-
-		$narasumber["get_header"] = $this->parser->parse ( "header", $header, TRUE );
-
-		$narasumber["get_sidebar"] = $this->parser->parse ( "sidebar", array(), TRUE );
-
-		$narasumber["get_content"] = $this->parser->parse ( "narasumber_list", $content, TRUE );
-
-		$narasumber["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
-		
-		$this->parser->parse ( 'index', $narasumber );
+		return $this->parser->parse ( 'index', $narasumber );
 	}
 
 	public function add ()

@@ -1,4 +1,6 @@
-{get_header}
+<div class="content-section row">
+
+	<h1><span>TOT</span></h1>
 
 		<table>
 			<caption></caption>
@@ -25,4 +27,4 @@
 			</tbody>
 		</table>
 
-{get_footer}
+</div>

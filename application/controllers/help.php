@@ -1,6 +1,6 @@
 <?php defined ( "BASEPATH" ) OR die ( "hae~" );
 
-class Index extends CI_Controller {
+class Help extends CI_Controller {
 
 	public function __construct()
 	{
@@ -22,7 +22,7 @@ class Index extends CI_Controller {
 	public function index()
 	{
 		/* VARIABLE */
-		$view_file	= "welcome";
+		$view_file	= "help";
 
 		/* INITIATE HEADER */
 		$header["site_title"]		= $this->mapps->site_title() . " - Home";

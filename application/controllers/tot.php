@@ -6,30 +6,56 @@ class Tot extends CI_Controller {
 	{
 		parent::__construct();
 
-		$this->load->helper ( 'url' );
-		
-		$this->load->model ( array ( 'tot_model', 'mlogin', 'mapps' ) );
-
+		/* LIBRARY */
 		$this->load->library ( 'parser' );
 
+		/* HELPER */
+		$this->load->helper ( 'url' );
+		
+		/* MODEL */
+		$this->load->model ( array ( 'tot_model', 'mlogin', 'mapps' ) );
+
+		/* CHECKING AUTH USER */
 		if ( ! $this->mlogin->__is_logged() ) redirect();
 	}
 
 	public function index()
 	{
-		$header	= $this->mapps->nav_active();
-		
+		/* VARIABLE */
+		$view_file	= "tot_list";
+
+		/* INITIATE HEADER */
 		$header["site_title"]	= $this->mapps->site_title() . " - " . strtoupper ( __CLASS__ );
 
-		$header["body_class"]	= " class=\"content\"";
+		/* INITIATE SIDEBAR */
+		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
 
-		$tot['tot'] = $this->tot_model->get()->result();
-		
-		$tot["get_header"] = $this->parser->parse ( "header", $header, TRUE );
+		$sidebar["is_narasumber"]	= $this->mapps->__is_active ( "narasumber" );
 
-		$tot["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
+		$sidebar["is_tot"]			= $this->mapps->__is_active ( "tot" );
+
+		$sidebar["is_mengajar"]		= $this->mapps->__is_active ( "mengajar" );
+
+		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
+
+		/* INITIATE CONTENT */
+		$content['tot'] = $this->tot_model->get()->result();
 		
-		return $this->parser->parse ( 'tot_list', $tot );
+		/* INITIATE FOOTER */
+		$footer['tot'] 			= NULL;
+
+		/* INITIATE THEME */
+		$index["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
+
+		$index["get_sidebar"]		= $this->parser->parse ( "sidebar", $sidebar, TRUE );
+
+		$index["get_content"]		= $this->parser->parse ( $view_file, $content, TRUE );
+
+		$index["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
+
+		/* RETURN */
+
+		return $this->parser->parse ( "index", $index );
 	}
 
 	public function add()

@@ -6,28 +6,56 @@ class Mengajar extends CI_Controller {
 	{
 		parent::__construct();
 
-		$this->load->helper ( 'url' );
-		
-		$this->load->model ( array ( 'mlogin', 'mapps' ) );
-
+		/* LIBRARY */
 		$this->load->library ( 'parser' );
 
+		/* HELPER */
+		$this->load->helper ( 'url' );
+		
+		/* MODEL */
+		$this->load->model ( array ( 'mlogin', 'mapps' ) );
+
+		/* CHECKING AUTH USER */
 		if ( ! $this->mlogin->__is_logged() ) redirect();
 	}
 
 	public function index()
 	{
-		$header	= $this->mapps->nav_active();
-		
+		/* VARIABLE */
+		$view_file	= "mengajar_list";
+
+		/* INITIATE HEADER */
 		$header["site_title"]	= $this->mapps->site_title() . " - " . ucwords ( strtolower ( __CLASS__ ) );
 
-		$header["body_class"]	= " class=\"content\"";
+		/* INITIATE SIDEBAR */
+		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
 
-		$mengajar["get_header"] = $this->parser->parse ( "header", $header, TRUE );
+		$sidebar["is_narasumber"]	= $this->mapps->__is_active ( "narasumber" );
 
-		$mengajar["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
+		$sidebar["is_tot"]			= $this->mapps->__is_active ( "tot" );
 
-		return $this->parser->parse ( "mengajar_list", $mengajar );
+		$sidebar["is_mengajar"]		= $this->mapps->__is_active ( "mengajar" );
+
+		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
+
+		/* INITIATE CONTENT */
+		$content['index'] 			= NULL;
+
+		/* INITIATE FOOTER */
+		$footer['index'] 			= NULL;
+
+		/* INITIATE THEME */
+		$index["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
+
+		$index["get_sidebar"]		= $this->parser->parse ( "sidebar", $sidebar, TRUE );
+
+		$index["get_content"]		= $this->parser->parse ( $view_file, $content, TRUE );
+
+		$index["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
+
+		/* RETURN */
+
+		return $this->parser->parse ( "index", $index );
 	}
 
 	public function add()
