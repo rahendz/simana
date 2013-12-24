@@ -2,7 +2,13 @@
 
 	<h1><span>NARASUMBER</span></h1>
 
-	<table>
+	{notif}
+
+	<p>
+		<a href="<?php echo base_url('index.php/narasumber/add') ?>" class="btn btn-primary">TAMBAH</a>
+	</p>	
+
+	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<td>No</td>
@@ -16,8 +22,11 @@
 		</thead>
 
 		<tbody>
-			{narasumber}
+			
 			<?php $i = 1; ?>
+
+			{narasumber}
+			
 			<tr>
 				<td><?php echo $i++; ?></td>
 				<td>{nama}</td>
@@ -26,8 +35,8 @@
 				<td>{telp}</td>
 				<td>{email}</td>
 				<td>
-					<a href="<?php echo site_url('narasumber/edit'); ?>/{idnarasumber_biodata}">edit</a>| 
-					<a href="<?php echo site_url('narasumber/delete'); ?>/{idnarasumber_biodata}" onClick="return confirm('Anda Yakin Akan Dihapus?');">delete</a>| 
+					<a href="<?php echo site_url('narasumber/edit'); ?>/{idnarasumber_biodata}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+					<a href="<?php echo site_url('narasumber/delete'); ?>/{idnarasumber_biodata}" onClick="return confirm('Anda Yakin Akan Dihapus?')" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Hapus</a>
 					<!-- <a href="<?php echo site_url('narasumber/detail'); ?>/{idnarasumber_biodata}">detail</a> -->
 				</td>
 			</tr>

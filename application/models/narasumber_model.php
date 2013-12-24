@@ -5,19 +5,19 @@ class Narasumber_model extends CI_Model{
 		parent::__construct();
 	}
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 	public function getAllNarasumber(){
 		$this->load->database();
 		$this->db->select('*');
 		$this->db->from('narasumber_biodata');
-=======
+=======*/
 	public function get()
 	{
 		$this->db->select ( '*' );
 		
 		$this->db->from ( 'narasumber_biodata' );
 		
->>>>>>> origin/rahendz
+/*>>>>>>> origin/rahendz*/
 		return $this->db->get();
 	}
 
@@ -38,6 +38,8 @@ class Narasumber_model extends CI_Model{
 
 	public function add ( $data )
 	{
+		$this->load->library('session');
+
 		$this->db->set ( 'nama', $data['nama'] );
 
 		$this->db->set ( 'instansi', $data['instansi'] );
@@ -48,7 +50,15 @@ class Narasumber_model extends CI_Model{
 
 		$this->db->set ( 'email', $data['email'] );
 
-		$this->db->insert ( 'narasumber_biodata' );
+		if ($this->db->insert ( 'narasumber_biodata' )) {
+			$this->session->set_flashdata('notif','<div class="alert alert-success">Data Berhasil Disimpan</div>');
+			return TRUE;
+		}else{
+			$this->session->set_flashdata('notif','<div class="alert alert-danger">Data Gagal Disimpan</div>');
+			return FALSE;
+		}
+
+		
 	}
 
 	public function edit ( $data, $id )

@@ -7,7 +7,7 @@ class Narasumber extends CI_Controller {
 		parent::__construct();
 
 		/* LIBRARY */
-		$this->load->library ( 'parser' );
+		$this->load->library ( array('parser','session') );
 
 		/* HELPER */
 		$this->load->helper ( 'url' );
@@ -40,6 +40,7 @@ class Narasumber extends CI_Controller {
 
 		/* INITIATE CONTENT */
 		$content['narasumber'] 		= $this->narasumber_model->get()->result();
+		$content['notif']			= $this->session->flashdata('notif');
 
 		/* INITIATE SIDEBAR */
 		$footer['narasumber'] 		= NULL;
@@ -58,38 +59,62 @@ class Narasumber extends CI_Controller {
 
 	public function add ()
 	{
+		/* action form */
 		if ( $this->input->post ( 'submit', TRUE ) AND 
 
 			$this->narasumber_model->add ( $this->input->post ( NULL, TRUE ) ) !== FALSE )
 
-				redirect();
+				redirect('narasumber');
 
-		$header	= $this->mapps->nav_active();
+		/* VARIABLE */
+		$view_file	= "narasumber_form";
+
+		/* INITIATE HEADER */
+		$header["site_title"]		= $this->mapps->site_title() . " - Tambah " . ucwords ( strtolower ( __CLASS__ ) );
+
+		/* INITIATE SIDEBAR */
+		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
+
+		$sidebar["is_narasumber"]	= $this->mapps->__is_active ( "narasumber" );
+
+		$sidebar["is_tot"]			= $this->mapps->__is_active ( "tot" );
+
+		$sidebar["is_mengajar"]		= $this->mapps->__is_active ( "mengajar" );
+
+		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
+
+		/* INITIATE CONTENT */
+		$content 					= array ( 'nama'=>'', 'instansi'=>'', 'lokasi'=>'', 'telp'=>'', 'email'=>'' );
+		$content['action_url'] 		= current_url();
+
+		/* INITIATE SIDEBAR */
+		$footer['narasumber'] 		= NULL;
+
+		/* INITIATE THEME */
+
+		//$narasumber = array ( 'nama'=>'', 'instansi'=>'', 'lokasi'=>'', 'telp'=>'', 'email'=>'' );
+
+		$narasumber["get_header"] 	= $this->parser->parse ( "header", $header, TRUE );
+
+		$narasumber["get_sidebar"] 	= $this->parser->parse ( "sidebar", $sidebar, TRUE );
+
+		$narasumber["get_content"] 	= $this->parser->parse ( $view_file, $content, TRUE );
+
+		$narasumber["get_footer"] 	= $this->parser->parse ( "footer", $footer, TRUE );
 		
-		$header["site_title"]	= $this->mapps->site_title() . " - Tambah " . ucwords ( strtolower ( __CLASS__ ) );
+		return $this->parser->parse ( 'index', $narasumber );
 
-		$header["body_class"]	= " class=\"content\"";
-
-		$narasumber = array ( 'nama'=>'', 'instansi'=>'', 'lokasi'=>'', 'telp'=>'', 'email'=>'' );
-		
-		$narasumber['action_url'] = current_url();
-
-		$narasumber["get_header"] = $this->parser->parse ( "header", $header, TRUE );
-
-		$narasumber["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
-		
-		$this->parser->parse ( 'narasumber_form', $narasumber );
 	}
 
 	public function edit ( $id = NULL )
 	{
-		if ( is_null ( $id ) ) redirect();
+		if ( is_null ( $id ) ) redirect('narasumber');
 
 		if ( $this->input->post ( 'submit', TRUE ) AND 
 
 			$this->narasumber_model->edit ( $this->input->post ( NULL, TRUE ), $id ) !== FALSE )
 
-				redirect();
+				redirect('narasumber');
 
 		$header	= $this->mapps->nav_active();
 		
