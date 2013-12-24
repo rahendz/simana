@@ -1,10 +1,18 @@
+JOB DESCRIPTION
+==================================
 Login cuma buat admin
 
-- Login					R
-- CRUD				
-	- Narasumber		D
-	- List TOT			D
-	- Mengajar			D
-	- Sertifikat TOT	R
-- Upload				R
-- Rekap					DR
+- Login						R
+
+- Narasumber
+	- CRUD					D
+
+- TOT
+	- CRUD					D
+	- Sertifikat			R
+
+- Mengajar
+	- CRUD					D
+	- Upload				R
+
+- Rekap						DR

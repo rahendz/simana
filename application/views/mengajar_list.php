@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-	<html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title></title>
-		<link rel="stylesheet" href="">
-	</head>
-	<body>
+<div class="content-section row">
+
+	<h1><span>MENGAJAR</span></h1>
+
 		<table>
 			<caption></caption>
 			<thead>
@@ -25,5 +20,5 @@
 				</tr>
 			</tbody>
 		</table>
-	</body>
-</html>
+
+</div>

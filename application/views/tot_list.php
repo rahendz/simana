@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-	<head>
-			<meta charset="utf-8">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<title></title>
-			<link rel="stylesheet" href="">
-	</head>
-	<body>
+<div class="content-section row">
+
+	<h1><span>TOT</span></h1>
+
 		<table>
 			<caption></caption>
 			<thead>
@@ -17,18 +12,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php $i = 1; foreach ($tot->result() as $row) { ?>
+			{tot}
+				<?php $i = 1; ?>
 			<tr>
 				<td><?php echo $i++; ?></td>
-				<td><?php echo $row->nama; ?></td>
+				<td>{nama}</td>
 				<td>
-					<a href="<?php echo site_url('tot/addTot/'.$row->idtot); ?>">edit</a>| 
-					<a href="<?php echo site_url('tot/deleteTot/'.$row->idtot); ?>" onClick="return confirm('Anda Yakin Akan Dihapus?');">delete</a>| 
-					<a href="<?php echo site_url('tot/detailTot/'.$row->idtot); ?>">detail</a>
+					<a href="<?php echo site_url('tot/edit'); ?>/{idtot}">edit</a>| 
+					<a href="<?php echo site_url('tot/delete'); ?>/{idtot}" onClick="return confirm('Anda Yakin Akan Dihapus?');">delete</a>| 
+					<!-- <a href="<?php echo site_url('tot/detailTot/'.$row->idtot); ?>">detail</a> -->
 				</td>
 			</tr>
-			<?php } ?>
+			{/tot}
 			</tbody>
 		</table>
-	</body>
-</html>
+
+</div>

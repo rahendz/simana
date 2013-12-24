@@ -1,39 +1,54 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Tot_model extends CI_Model{
-	public function __construct(){
+class Tot_model extends CI_Model {
+
+	public function __construct()
+	{
 		parent::__construct();
 	}
 
-	public function getAllTot(){
-		$this->db->select('*');
-		$this->db->from('tot');
+	public function get()
+	{
+		$this->db->select ( '*' );
+		
+		$this->db->from ( 'tot' );
+		
 		return $this->db->get();
 	}
 
-	public function getTotById($id){
-		$this->db->select('*');
-		$this->db->from('tot');
-		$this->db->where('idtot',$id);
-		return $this->db->get()->row();
-	}
+	public function getById ( $id )
+	{
+		$this->db->select ( '*' );
 
-	public function addTot($data,$id=""){
+		$this->db->from ( 'tot' );
 		
-		if ($id == "") {
-			//print_r($data);exit();
-			$this->db->set('nama',$data['nama']);
-			$this->db->insert('tot');
-		} else {
-			//echo "no";exit();
-			$this->db->set('nama',$data['nama']);
-			$this->db->where('idtot',$id);
-			$this->db->update('tot');
-		}
+		$this->db->where ( 'idtot', $id );
+
+		$result = $this->db->get();
+		
+		return $result->num_rows() > 0 ? $result->row_array() : array ( 'nama' => '' );
 	}
 
-	public function deleteTotById($id){
-		$this->db->where('idtot',$id);
-		$this->db->delete('tot');
+	public function add ( $data )
+	{
+		$this->db->set ( 'nama', $data['nama'] );
+
+		$this->db->insert ( 'tot' );
+	}
+
+	public function edit ( $data, $id )
+	{
+		$this->db->set ( 'nama', $data['nama'] );
+		
+		$this->db->where ( 'idtot', $id );
+		
+		$this->db->update ( 'tot' );
+	}
+
+	public function delete ( $id )
+	{
+		$this->db->where ( 'idtot', $id );
+		
+		$this->db->delete ( 'tot' );
 	}
 }
