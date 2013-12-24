@@ -6,6 +6,7 @@ class Narasumber_model extends CI_Model{
 	}
 
 	public function getAllNarasumber(){
+		$this->load->database();
 		$this->db->select('*');
 		$this->db->from('narasumber_biodata');
 		return $this->db->get();
