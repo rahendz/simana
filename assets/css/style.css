@@ -9,6 +9,7 @@ html,body{margin:0;padding:0;width:100%;height:100%;color:#666;font-family:sg;fo
 .talign{vertical-align:top !important;}
 .balign{vertical-align:bottom !important;}
 .malign{vertical-align:middle !important;}
+.pull-none{float:none !important;}
 
 .tdefault{color:#FFF !important;}
 .tprimary{color:#428bca !important;}
