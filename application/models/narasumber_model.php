@@ -75,13 +75,26 @@ class Narasumber_model extends CI_Model{
 
 		$this->db->where ( 'idnarasumber_biodata', $id );
 
-		$this->db->update ( 'narasumber_biodata' );
+		if ($this->db->update ( 'narasumber_biodata' )) {
+			$this->session->set_flashdata('notif','<div class="alert alert-success">Data Berhasil Di Edit</div>');
+			return TRUE;
+		}else{
+			$this->session->set_flashdata('notif','<div class="alert alert-danger">Data Gagal Di Edit</div>');
+			return FALSE;
+		}
+
 	}
 
 	public function delete ( $id )
 	{
 		$this->db->where ( 'idnarasumber_biodata', $id );
 		
-		$this->db->delete ( 'narasumber_biodata' );
+		if ($this->db->delete ( 'narasumber_biodata' )) {
+			$this->session->set_flashdata('notif','<div class="alert alert-success">Data Berhasil Di Hapus</div>');
+			return TRUE;
+		}else{
+			$this->session->set_flashdata('notif','<div class="alert alert-danger">Data Gagal Di Hapus</div>');
+			return FALSE;
+		}
 	}
 }

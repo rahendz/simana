@@ -2,10 +2,6 @@
 
 	<h1><span>NARASUMBER</span></h1>
 
-	<div class="form-group">
-
-	</div>	
-
 	<form action="{action_url}" method="post" accept-charset="utf-8" class="form-horizontal">
 
 		<div class="form-group col-md-6 pull-none">

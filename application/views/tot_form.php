@@ -1,8 +1,16 @@
-{get_header}
+<div class="content-section">
 
-		<form action="{action_url}" method="post" accept-charset="utf-8">
-			nama : <input type="text" name="nama" value="{nama}">
-			<input type="submit" name="submit" value="submit">
-		</form>
+	<h1><span>TOT</span></h1>
 
-{get_footer}
+	<form action="{action_url}" method="post" accept-charset="utf-8" class="form-horizontal">
+		
+		<div class="form-group col-md-6 pull-none">
+			<label class="control-label">Nama</label>
+			<input class="form-control" type="text" name="nama" value="{nama}" />
+		</div>
+
+		<input type="submit" name="submit" value="submit" class="btn btn-primary">
+
+	</form>
+
+</div>

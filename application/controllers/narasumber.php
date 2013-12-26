@@ -116,25 +116,45 @@ class Narasumber extends CI_Controller {
 
 				redirect('narasumber');
 
-		$header	= $this->mapps->nav_active();
+		/* VARIABLE */
+		$view_file	= "narasumber_form";
+
+		/* INITIATE HEADER */
+		$header["site_title"]		= $this->mapps->site_title() . " - Edit " . ucwords ( strtolower ( __CLASS__ ) );
+
+		/* INITIATE SIDEBAR */
+		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
+
+		$sidebar["is_narasumber"]	= $this->mapps->__is_active ( "narasumber" );
+
+		$sidebar["is_tot"]			= $this->mapps->__is_active ( "tot" );
+
+		$sidebar["is_mengajar"]		= $this->mapps->__is_active ( "mengajar" );
+
+		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
+
+		/* INITIATE CONTENT */
+		$content 					= $this->narasumber_model->getById ( $id );
+		//$content 					= array ( 'nama'=>'', 'instansi'=>'', 'lokasi'=>'', 'telp'=>'', 'email'=>'' );
+		$content['action_url'] 		= current_url();
+
+		/* INITIATE SIDEBAR */
+		$footer['narasumber'] 		= NULL;
+
+		/* INITIATE THEME */
+
+		//$narasumber = array ( 'nama'=>'', 'instansi'=>'', 'lokasi'=>'', 'telp'=>'', 'email'=>'' );
+
+		$narasumber["get_header"] 	= $this->parser->parse ( "header", $header, TRUE );
+
+		$narasumber["get_sidebar"] 	= $this->parser->parse ( "sidebar", $sidebar, TRUE );
+
+		$narasumber["get_content"] 	= $this->parser->parse ( $view_file, $content, TRUE );
+
+		$narasumber["get_footer"] 	= $this->parser->parse ( "footer", $footer, TRUE );
 		
-		$header["site_title"]	= $this->mapps->site_title() . " - Ubah " . ucwords ( strtolower ( __CLASS__ ) );
+		return $this->parser->parse ( 'index', $narasumber );	
 
-		$header["body_class"]	= " class=\"content\"";
-
-		$content = $this->narasumber_model->getById ( $id );
-
-		$content['action_url'] = current_url();
-
-		$narasumber["get_header"] = $this->parser->parse ( "header", $header, TRUE );
-
-		$narasumber["get_content"] = $this->parser->parse ( "narasumber_form", $content, TRUE );
-		
-		$narasumber["get_sidebar"] = $this->parser->parse ( "sidebar", array(), TRUE );
-		
-		$narasumber["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
-		
-		return $this->parser->parse ( 'index', $narasumber );
 	}
 
 	public function delete ( $id = NULL )
@@ -143,7 +163,7 @@ class Narasumber extends CI_Controller {
 
 		$this->narasumber_model->delete ( $id );
 
-		redirect();
+		redirect('narasumber');
 	}
 
 }
