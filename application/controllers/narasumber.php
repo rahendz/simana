@@ -39,7 +39,7 @@ class Narasumber extends CI_Controller {
 		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
 
 		/* INITIATE CONTENT */
-		$content['narasumber'] 		= $this->narasumber_model->get()->result();
+		$content['narasumber'] 		= $this->narasumber_model->get();
 		$content['notif']			= $this->session->flashdata('notif');
 
 		/* INITIATE SIDEBAR */
