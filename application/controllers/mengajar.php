@@ -86,7 +86,8 @@ class Mengajar extends CI_Controller {
 		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
 
 		/* INITIATE CONTENT */
-		$content['index'] 			= NULL;
+		$content 					= array('nama'=>'','tempat'=>'','jumlah'=>'','tanggal'=>'','catatan'=>'','surat_penugasan'=>'');
+		$content['action_url'] 		= current_url();
 
 		/* INITIATE FOOTER */
 		$footer['index'] 			= NULL;

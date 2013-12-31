@@ -21,12 +21,12 @@
 
 		<div class="form-group col-md-6 pull-none">
 			<label class="control-label">Catatan</label>
-			<textarea name="catatan" value="{catatan}"></textarea>
+			<textarea class="form-control" name="catatan" value="{catatan}"></textarea>
 		</div>
 
 		<div class="form-group col-md-6 pull-none">
 			<label class="control-label">Surat Penugasan</label>
-			<input class="form-control" type="file" name="nama" value="{nama}" />
+			<input type="file" name="nama" value="{nama}" />
 		</div>
 
 		<input type="submit" name="submit" value="submit" class="btn btn-primary">
