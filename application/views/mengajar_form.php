@@ -1,3 +1,4 @@
+
 <div class="content-section">
 
 	<h1><span>MENGAJAR</span></h1>
@@ -6,7 +7,12 @@
 		
 		<div class="form-group col-md-6 pull-none">
 			<label class="control-label">Narasumber</label>
-			<input class="form-control" type="text" name="nama" value="{nama}" />
+			<select name="idnarasumber" id="e1">
+				<option value="1">arah</option>
+				<option value="1">arah</option>
+				<option value="1">arah</option>
+				<option value="1">arah</option>
+			</select>
 		</div>
 
 		<div class="form-group col-md-6 pull-none">
@@ -39,8 +45,3 @@
 	</form>
 
 </div>
-<!-- js datepicker -->
-<script type="text/javascript">
-	$('#datepicker').datepicker();
-</script>
-
