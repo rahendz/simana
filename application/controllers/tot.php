@@ -13,19 +13,16 @@ class Tot extends CI_Controller {
 		$this->load->helper ( 'url' );
 		
 		/* MODEL */
-		$this->load->model ( array ( 'tot_model', 'mlogin', 'mapps' ) );
+		$this->load->model ( array ( 'tot_model', 'mlogin', 'mapps', 'msertifikat' ) );
 
 		/* CHECKING AUTH USER */
 		if ( ! $this->mlogin->__is_logged() ) redirect();
 	}
 
-	public function index()
+	protected function __initiate ( $view_file, $title = NULL, $content = NULL )
 	{
-		/* VARIABLE */
-		$view_file	= "tot_list";
-
 		/* INITIATE HEADER */
-		$header["site_title"]	= $this->mapps->site_title() . " - " . strtoupper ( __CLASS__ );
+		$header["site_title"]		= $this->mapps->site_title() . " - " . ( is_null ( $title ) ? strtoupper ( __CLASS__ ) : $title );
 
 		/* INITIATE SIDEBAR */
 		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
@@ -38,24 +35,28 @@ class Tot extends CI_Controller {
 
 		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
 
-		/* INITIATE CONTENT */
-		$content['tot'] = $this->tot_model->get()->result();
-		
 		/* INITIATE FOOTER */
 		$footer['tot'] 			= NULL;
 
 		/* INITIATE THEME */
-		$index["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
+		$init["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
 
-		$index["get_sidebar"]		= $this->parser->parse ( "sidebar", $sidebar, TRUE );
+		$init["get_sidebar"]	= $this->parser->parse ( "sidebar", $sidebar, TRUE );
 
-		$index["get_content"]		= $this->parser->parse ( $view_file, $content, TRUE );
+		$init["get_content"]	= $this->parser->parse ( $view_file, $content, TRUE );
 
-		$index["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
+		$init["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
 
+		return $init;
+	}
+
+	public function index()
+	{
+		/* INITIATE CONTENT */
+		$content['tot'] = $this->tot_model->get()->result();
+		
 		/* RETURN */
-
-		return $this->parser->parse ( "index", $index );
+		return $this->parser->parse ( "index", $this->__initiate ( 'tot_list', NULL, $content ) );
 	}
 
 	public function add()
@@ -125,9 +126,9 @@ class Tot extends CI_Controller {
 
 		switch ( $type ) :
 
-			case "view": $this->sertifikat_view(); break;
+			case "view": return $this->sertifikat_view(); break;
 
-			case "add": $this->sertifikat_add(); break;
+			case "add": return $this->sertifikat_add(); break;
 
 			case "detail": return $this->sertifikat_detail ( $kode ); break;
 
@@ -140,7 +141,11 @@ class Tot extends CI_Controller {
 
 		protected function sertifikat_view()
 		{
-			echo "sertifikat view all";
+			/* INITIATE CONTENT */
+			$content['serts'] 			= $this->msertifikat->get()->result();
+			
+			/* RETURN */
+			return $this->parser->parse ( "index", $this->__initiate ( "sertifikat_list", "Sertifikat " . strtoupper ( __CLASS__ ), $content ) );
 		}
 
 		protected function sertifikat_add()
