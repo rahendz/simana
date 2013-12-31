@@ -13,7 +13,7 @@ class Mengajar extends CI_Controller {
 		$this->load->helper ( 'url' );
 		
 		/* MODEL */
-		$this->load->model ( array ( 'mlogin', 'mapps' ) );
+		$this->load->model ( array ( 'mlogin', 'mapps' , 'narasumber_model' ) );
 
 		/* CHECKING AUTH USER */
 		if ( ! $this->mlogin->__is_logged() ) redirect();
@@ -87,6 +87,8 @@ class Mengajar extends CI_Controller {
 
 		/* INITIATE CONTENT */
 		$content 					= array('nama'=>'','tempat'=>'','jumlah'=>'','tanggal'=>'','catatan'=>'','surat_penugasan'=>'');
+		$content['narasumber']		= $this->narasumber_model->get();
+		//print_r($content['narasumber']);exit();
 		$content['action_url'] 		= current_url();
 
 		/* INITIATE FOOTER */

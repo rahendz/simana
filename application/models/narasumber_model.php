@@ -18,7 +18,10 @@ class Narasumber_model extends CI_Model{
 		$this->db->from ( 'narasumber_biodata' );
 		
 /*>>>>>>> origin/rahendz*/
-		return $this->db->get();
+		$result = $this->db->get();
+
+		return $result->num_rows() > 0 ? $result->result_array() : array(
+			'idnarasumber_biodata'=>'', 'nama'=>'', 'instansi'=>'', 'lokasi'=>'', 'telp'=>'', 'email'=>'');
 	}
 
 	public function getById ( $id )

@@ -7,11 +7,13 @@
 		
 		<div class="form-group col-md-6 pull-none">
 			<label class="control-label">Narasumber</label>
+
 			<select name="idnarasumber" id="e1">
-				<option value="1">arah</option>
-				<option value="1">arah</option>
-				<option value="1">arah</option>
-				<option value="1">arah</option>
+				
+				<?php foreach ($narasumber as $value) { ?>
+					<option value="<?php echo $value['idnarasumber_biodata'];  ?>"><?php echo $value['nama'] ?></option>
+				<?php } ?>
+
 			</select>
 		</div>
 
