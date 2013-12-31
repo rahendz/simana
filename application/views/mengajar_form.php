@@ -15,8 +15,13 @@
 		</div>
 
 		<div class="form-group col-md-6 pull-none">
-			<label class="control-label">Tanggal</label>
-			<input class="form-control" type="text" name="tanggal" value="{tanggal}" />
+			<label class="control-label" >Tanggal</label>
+			<input class="form-control" type="text" name="tanggal" value="{tanggal}" id="datepicker"/>
+		</div>
+
+		<div class="form-group col-md-6 pull-none">
+			<label class="control-label">Jumlah</label>
+			<input class="form-control" type="text" name="jumlah" value="{jumlah}" />
 		</div>
 
 		<div class="form-group col-md-6 pull-none">
@@ -34,3 +39,8 @@
 	</form>
 
 </div>
+<!-- js datepicker -->
+<script type="text/javascript">
+	$('#datepicker').datepicker();
+</script>
+
