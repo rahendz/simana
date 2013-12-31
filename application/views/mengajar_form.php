@@ -1,19 +1,36 @@
-<!DOCTYPE html>
-	<html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title></title>
-		<link rel="stylesheet" href="">
-	</head>
-	<body>
-		narasumber <select name="narasumber">
-					<option value=""></option>
-				   </select>
-		tempat <input type="text" name="tempat">
-		tanggal <input type="datetime" name="tanggal">
-		catatan <input type="textarea" name="catatan">
-		surat penugasan <input type="file" name="surat">
-		<input type="submit" name="submit" value="submit">
-	</body>
-</html>
+<div class="content-section">
+
+	<h1><span>MENGAJAR</span></h1>
+
+	<form action="{action_url}" method="post" accept-charset="utf-8" class="form-horizontal">
+		
+		<div class="form-group col-md-6 pull-none">
+			<label class="control-label">Narasumber</label>
+			<input class="form-control" type="text" name="nama" value="{nama}" />
+		</div>
+
+		<div class="form-group col-md-6 pull-none">
+			<label class="control-label">Tempat</label>
+			<input class="form-control" type="text" name="tempat" value="{tempat}" />
+		</div>
+
+		<div class="form-group col-md-6 pull-none">
+			<label class="control-label">Tanggal</label>
+			<input class="form-control" type="text" name="tanggal" value="{tanggal}" />
+		</div>
+
+		<div class="form-group col-md-6 pull-none">
+			<label class="control-label">Catatan</label>
+			<textarea name="catatan" value="{catatan}"></textarea>
+		</div>
+
+		<div class="form-group col-md-6 pull-none">
+			<label class="control-label">Surat Penugasan</label>
+			<input class="form-control" type="file" name="nama" value="{nama}" />
+		</div>
+
+		<input type="submit" name="submit" value="submit" class="btn btn-primary">
+
+	</form>
+
+</div>
