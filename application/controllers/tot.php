@@ -57,42 +57,13 @@ class Tot extends CI_Controller {
 
 				redirect ( 'tot' );
 
-		/* VARIABLE */
-		$view_file	= "tot_form";
-
-		/* INITIATE HEADER */
-		$header["site_title"]	= $this->mapps->site_title() . " - Edit " . strtoupper ( __CLASS__ );
-
-		/* INITIATE SIDEBAR */
-		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
-
-		$sidebar["is_narasumber"]	= $this->mapps->__is_active ( "narasumber" );
-
-		$sidebar["is_tot"]			= $this->mapps->__is_active ( "tot" );
-
-		$sidebar["is_mengajar"]		= $this->mapps->__is_active ( "mengajar" );
-
-		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
-
 		/* INITIATE CONTENT */
 		$content 					= $this->tot_model->getById ( $id );
+
 		$content['action_url'] 		= current_url();
 		
-		/* INITIATE FOOTER */
-		$footer['tot'] 			= NULL;
-
-		/* INITIATE THEME */
-		$index["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
-
-		$index["get_sidebar"]		= $this->parser->parse ( "sidebar", $sidebar, TRUE );
-
-		$index["get_content"]		= $this->parser->parse ( $view_file, $content, TRUE );
-
-		$index["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
-
 		/* RETURN */
-
-		return $this->parser->parse ( "index", $index );
+		return $this->parser->parse ( "index", $this->mapps->__initiate ( 'tot_form', "Edit " . strtoupper ( __CLASS__ ), $content ) );
 	}
 
 	public function delete ( $id )
@@ -129,7 +100,7 @@ class Tot extends CI_Controller {
 			$content['serts'] 			= $this->msertifikat->get()->result();
 			
 			/* RETURN */
-			return $this->parser->parse ( "index", $this->__initiate ( "sertifikat_list", "Sertifikat " . strtoupper ( __CLASS__ ), $content ) );
+			return $this->parser->parse ( "index", $this->mapps->__initiate ( "sertifikat_list", "Sertifikat " . strtoupper ( __CLASS__ ), $content ) );
 		}
 
 		protected function sertifikat_add()
