@@ -4,5 +4,7 @@
 <script src="<?php echo base_url("assets/js/datepicker.js") ?>"></script>
 <script src="<?php echo base_url("assets/js/select2.min.js") ?>"></script>
 <script src="<?php echo base_url("assets/js/trigger.js") ?>"></script>
+<!-- test -->
+
 </body>
 </html>

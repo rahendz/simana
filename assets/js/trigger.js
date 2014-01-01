@@ -1,12 +1,16 @@
 $(document).ready(function(){
 	$("#datepicker").datepicker();
-	$("#e1").select2();
-	$("#datatable").dataTable({
+	$("select").select2();
+	var oTable = $("#datatable").dataTable({
 		"sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
 		"oLanguage": {
         	"sLengthMenu": "_MENU_",
                 "sSearch": ""
-    	}
+    	},
+        "fnRowCallback" : function(nRow, aData, iDisplayIndex){
+                $("td:first", nRow).html(iDisplayIndex +1);
+               return nRow;
+        },"bSort" : false
 	}).each(function(){
         var datatable = $(this);
         // SEARCH - Add the placeholder for Search and Turn this into in-line formcontrol
@@ -33,4 +37,5 @@ $(document).ready(function(){
         var paginate = datatable.closest('.dataTables_wrapper').find('div[id$=_paginate]');
         paginate.addClass('pagination');
     });
+    new FixedColumns ( oTable );
 });

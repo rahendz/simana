@@ -22,24 +22,8 @@ class Tot extends CI_Controller {
 	public function index()
 	{
 		/* INITIATE CONTENT */
-<<<<<<< HEAD
-		$content['tot'] = $this->tot_model->get()->result();
-		$content['notif']			= $this->session->flashdata('notif');
-		
-		/* INITIATE FOOTER */
-		$footer['tot'] 			= NULL;
 
-		/* INITIATE THEME */
-		$index["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
-
-		$index["get_sidebar"]		= $this->parser->parse ( "sidebar", $sidebar, TRUE );
-
-		$index["get_content"]		= $this->parser->parse ( $view_file, $content, TRUE );
-
-		$index["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
-=======
 		$content['tot'] 	= $this->tot_model->get()->result();
->>>>>>> origin/rahendz
 
 		$content['notif']	= $this->session->flashdata('notif');
 		
@@ -55,44 +39,6 @@ class Tot extends CI_Controller {
 
 				redirect ( 'tot' );
 
-<<<<<<< HEAD
-		/* VARIABLE */
-		$view_file	= "tot_form";
-
-		/* INITIATE HEADER */
-		$header["site_title"]	= $this->mapps->site_title() . " - Tambah " . strtoupper ( __CLASS__ );
-
-		/* INITIATE SIDEBAR */
-		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
-
-		$sidebar["is_narasumber"]	= $this->mapps->__is_active ( "narasumber" );
-
-		$sidebar["is_tot"]			= $this->mapps->__is_active ( "tot" );
-
-		$sidebar["is_mengajar"]		= $this->mapps->__is_active ( "mengajar" );
-
-		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
-
-		/* INITIATE CONTENT */
-		$content 					= array ( 'nama'=>'');
-		$content['action_url'] 		= current_url();
-		
-		/* INITIATE FOOTER */
-		$footer['tot'] 			= NULL;
-
-		/* INITIATE THEME */
-		$index["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
-
-		$index["get_sidebar"]		= $this->parser->parse ( "sidebar", $sidebar, TRUE );
-
-		$index["get_content"]		= $this->parser->parse ( $view_file, $content, TRUE );
-
-		$index["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
-
-		/* RETURN */
-
-		return $this->parser->parse ( "index", $index );
-=======
 		/* INITIATE CONTENT */
 		$content 					= array ( 'nama'=>'' );
 
@@ -100,7 +46,6 @@ class Tot extends CI_Controller {
 		
 		/* RETURN */
 		return $this->parser->parse ( "index", $this->mapps->__initiate ( 'tot_form', "Tambah " . strtoupper ( __CLASS__ ), $content ) );
->>>>>>> origin/rahendz
 	}
 
 	public function edit ( $id = NULL )
@@ -113,44 +58,7 @@ class Tot extends CI_Controller {
 
 				redirect ( 'tot' );
 
-<<<<<<< HEAD
-		/* VARIABLE */
-		$view_file	= "tot_form";
 
-		/* INITIATE HEADER */
-		$header["site_title"]	= $this->mapps->site_title() . " - Edit " . strtoupper ( __CLASS__ );
-
-		/* INITIATE SIDEBAR */
-		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
-
-		$sidebar["is_narasumber"]	= $this->mapps->__is_active ( "narasumber" );
-
-		$sidebar["is_tot"]			= $this->mapps->__is_active ( "tot" );
-
-		$sidebar["is_mengajar"]		= $this->mapps->__is_active ( "mengajar" );
-
-		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
-
-		/* INITIATE CONTENT */
-		$content 					= $this->tot_model->getById ( $id );
-		$content['action_url'] 		= current_url();
-		
-		/* INITIATE FOOTER */
-		$footer['tot'] 			= NULL;
-
-		/* INITIATE THEME */
-		$index["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
-
-		$index["get_sidebar"]		= $this->parser->parse ( "sidebar", $sidebar, TRUE );
-
-		$index["get_content"]		= $this->parser->parse ( $view_file, $content, TRUE );
-
-		$index["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
-
-		/* RETURN */
-
-		return $this->parser->parse ( "index", $index );
-=======
 		/* INITIATE CONTENT */
 		$content 					= $this->tot_model->getById ( $id );
 
@@ -158,7 +66,6 @@ class Tot extends CI_Controller {
 		
 		/* RETURN */
 		return $this->parser->parse ( "index", $this->mapps->__initiate ( 'tot_form', "Edit " . strtoupper ( __CLASS__ ), $content ) );
->>>>>>> origin/rahendz
 	}
 
 	public function delete ( $id )

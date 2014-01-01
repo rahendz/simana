@@ -6,9 +6,19 @@
 		<p><a href="<?php echo site_url("logout") ?>" class="btn btn-primary logout"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp; LOGOUT</a></p>
 
 		<div class="copyright">
-			<p><a href="">About Developer</a></p>
+			<p><a data-toggle="modal" data-target="#aboutdevel">About Developer</a></p>
 			<p>Copyright 2013 <a href="">SIMANA&trade;</a></p>
 			<p>All Rights Reserved.</p>
+		</div>
+
+		<div id="aboutdevel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="aboutdevel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">oke</div>
+					<div class="modal-body">oke</div>
+					<div class="modal-footer">oke</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
