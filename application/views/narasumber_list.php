@@ -36,7 +36,11 @@
 		<a href="<?php echo base_url('index.php/narasumber/add') ?>" class="btn btn-primary">TAMBAH</a>
 	</p>	
 
+<<<<<<< HEAD
 	<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+=======
+	<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable">
+>>>>>>> origin/rahendz
 		<thead>
 			<tr>
 				<!-- <td>No</td> -->
