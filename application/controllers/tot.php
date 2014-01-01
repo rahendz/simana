@@ -19,44 +19,15 @@ class Tot extends CI_Controller {
 		if ( ! $this->mlogin->__is_logged() ) redirect();
 	}
 
-	protected function __initiate ( $view_file, $title = NULL, $content = NULL )
-	{
-		/* INITIATE HEADER */
-		$header["site_title"]		= $this->mapps->site_title() . " - " . ( is_null ( $title ) ? strtoupper ( __CLASS__ ) : $title );
-
-		/* INITIATE SIDEBAR */
-		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
-
-		$sidebar["is_narasumber"]	= $this->mapps->__is_active ( "narasumber" );
-
-		$sidebar["is_tot"]			= $this->mapps->__is_active ( "tot" );
-
-		$sidebar["is_mengajar"]		= $this->mapps->__is_active ( "mengajar" );
-
-		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
-
-		/* INITIATE FOOTER */
-		$footer['tot'] 			= NULL;
-
-		/* INITIATE THEME */
-		$init["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
-
-		$init["get_sidebar"]	= $this->parser->parse ( "sidebar", $sidebar, TRUE );
-
-		$init["get_content"]	= $this->parser->parse ( $view_file, $content, TRUE );
-
-		$init["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
-
-		return $init;
-	}
-
 	public function index()
 	{
 		/* INITIATE CONTENT */
-		$content['tot'] = $this->tot_model->get()->result();
+		$content['tot'] 	= $this->tot_model->get()->result();
+
+		$content['notif']	= $this->session->flashdata('notif');
 		
 		/* RETURN */
-		return $this->parser->parse ( "index", $this->__initiate ( 'tot_list', NULL, $content ) );
+		return $this->parser->parse ( "index", $this->mapps->__initiate ( 'tot_list', NULL, $content ) );
 	}
 
 	public function add()
@@ -67,21 +38,13 @@ class Tot extends CI_Controller {
 
 				redirect ( 'tot' );
 
-		$header	= $this->mapps->nav_active();
+		/* INITIATE CONTENT */
+		$content 					= array ( 'nama'=>'' );
+
+		$content['action_url'] 		= current_url();
 		
-		$header["site_title"]	= $this->mapps->site_title() . " - Tambah " . ucwords ( strtolower ( __CLASS__ ) );
-
-		$header["body_class"]	= " class=\"content\"";
-
-		$tot = array ( 'nama' => '' );
-
-		$tot["action_url"] = current_url();
-
-		$tot["get_header"] = $this->parser->parse ( "header", $header, TRUE );
-
-		$tot["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
-		
-		return $this->parser->parse ( 'tot_form', $tot );
+		/* RETURN */
+		return $this->parser->parse ( "index", $this->mapps->__initiate ( 'tot_form', "Tambah " . strtoupper ( __CLASS__ ), $content ) );
 	}
 
 	public function edit ( $id = NULL )
@@ -94,21 +57,42 @@ class Tot extends CI_Controller {
 
 				redirect ( 'tot' );
 
-		$header	= $this->mapps->nav_active();
+		/* VARIABLE */
+		$view_file	= "tot_form";
+
+		/* INITIATE HEADER */
+		$header["site_title"]	= $this->mapps->site_title() . " - Edit " . strtoupper ( __CLASS__ );
+
+		/* INITIATE SIDEBAR */
+		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
+
+		$sidebar["is_narasumber"]	= $this->mapps->__is_active ( "narasumber" );
+
+		$sidebar["is_tot"]			= $this->mapps->__is_active ( "tot" );
+
+		$sidebar["is_mengajar"]		= $this->mapps->__is_active ( "mengajar" );
+
+		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
+
+		/* INITIATE CONTENT */
+		$content 					= $this->tot_model->getById ( $id );
+		$content['action_url'] 		= current_url();
 		
-		$header["site_title"]	= $this->mapps->site_title() . " - Edit " . ucwords ( strtolower ( __CLASS__ ) );
+		/* INITIATE FOOTER */
+		$footer['tot'] 			= NULL;
 
-		$header["body_class"]	= " class=\"content\"";
+		/* INITIATE THEME */
+		$index["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
 
-		$tot = $this->tot_model->getById ( $id );
+		$index["get_sidebar"]		= $this->parser->parse ( "sidebar", $sidebar, TRUE );
 
-		$tot["action_url"] = current_url();
+		$index["get_content"]		= $this->parser->parse ( $view_file, $content, TRUE );
 
-		$tot["get_header"] = $this->parser->parse ( "header", $header, TRUE );
+		$index["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
 
-		$tot["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
-		
-		return $this->parser->parse ( 'tot_form', $tot );
+		/* RETURN */
+
+		return $this->parser->parse ( "index", $index );
 	}
 
 	public function delete ( $id )

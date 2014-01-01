@@ -11,7 +11,10 @@ class Narasumber_model extends CI_Model{
 		
 		$this->db->from ( 'narasumber_biodata' );
 		
-		return $this->db->get();
+		$result = $this->db->get();
+
+		return $result->num_rows() > 0 ? $result->result_array() : array(
+			'idnarasumber_biodata'=>'', 'nama'=>'', 'instansi'=>'', 'lokasi'=>'', 'telp'=>'', 'email'=>'');
 	}
 
 	public function getById ( $id )
@@ -31,6 +34,8 @@ class Narasumber_model extends CI_Model{
 
 	public function add ( $data )
 	{
+		$this->load->library('session');
+
 		$this->db->set ( 'nama', $data['nama'] );
 
 		$this->db->set ( 'instansi', $data['instansi'] );
@@ -41,7 +46,15 @@ class Narasumber_model extends CI_Model{
 
 		$this->db->set ( 'email', $data['email'] );
 
-		$this->db->insert ( 'narasumber_biodata' );
+		if ($this->db->insert ( 'narasumber_biodata' )) {
+			$this->session->set_flashdata('notif','<div class="alert alert-success">Data Berhasil Disimpan</div>');
+			return TRUE;
+		}else{
+			$this->session->set_flashdata('notif','<div class="alert alert-danger">Data Gagal Disimpan</div>');
+			return FALSE;
+		}
+
+		
 	}
 
 	public function edit ( $data, $id )
@@ -58,13 +71,26 @@ class Narasumber_model extends CI_Model{
 
 		$this->db->where ( 'idnarasumber_biodata', $id );
 
-		$this->db->update ( 'narasumber_biodata' );
+		if ($this->db->update ( 'narasumber_biodata' )) {
+			$this->session->set_flashdata('notif','<div class="alert alert-success">Data Berhasil Di Edit</div>');
+			return TRUE;
+		}else{
+			$this->session->set_flashdata('notif','<div class="alert alert-danger">Data Gagal Di Edit</div>');
+			return FALSE;
+		}
+
 	}
 
 	public function delete ( $id )
 	{
 		$this->db->where ( 'idnarasumber_biodata', $id );
 		
-		$this->db->delete ( 'narasumber_biodata' );
+		if ($this->db->delete ( 'narasumber_biodata' )) {
+			$this->session->set_flashdata('notif','<div class="alert alert-success">Data Berhasil Di Hapus</div>');
+			return TRUE;
+		}else{
+			$this->session->set_flashdata('notif','<div class="alert alert-danger">Data Gagal Di Hapus</div>');
+			return FALSE;
+		}
 	}
 }

@@ -71,6 +71,6 @@ body > .container > .row{height:100%;}
 
 /* CONTENT */
 .content{height:100%;overflow-x:hidden;overflow-y:scroll;padding:0;background:#EFEFEF;}
-.content-section{background:#FFF;margin-left:30px;box-shadow:-5px 0 20px rgba(0,0,0,0.1);padding:10px 0 10px 20px;}
+.content-section{background:#FFF;margin-left:30px;box-shadow:-5px 0 20px rgba(0,0,0,0.1);padding:10px 20px;}
 .content-section > h1{padding:0;margin:0;color:#4787ed;font-family:sgl;border-bottom:1px solid #EEE;line-height:normal;margin-bottom:20px;}
 .content-section > h1 > span{border-bottom:2px solid #4787ed;padding:0 10px;}

@@ -33,7 +33,13 @@ class Tot_model extends CI_Model {
 	{
 		$this->db->set ( 'nama', $data['nama'] );
 
-		$this->db->insert ( 'tot' );
+		if ($this->db->insert ( 'tot' )) {
+			$this->session->set_flashdata('notif','<div class="alert alert-success">Data Berhasil Disimpan</div>');
+			return TRUE;
+		}else{
+			$this->session->set_flashdata('notif','<div class="alert alert-danger">Data Gagal Disimpan</div>');
+			return FALSE;
+		}
 	}
 
 	public function edit ( $data, $id )
@@ -42,13 +48,25 @@ class Tot_model extends CI_Model {
 		
 		$this->db->where ( 'idtot', $id );
 		
-		$this->db->update ( 'tot' );
+		if ($this->db->update ( 'tot' )) {
+			$this->session->set_flashdata('notif','<div class="alert alert-success">Data Berhasil Di Edit</div>');
+			return TRUE;
+		}else{
+			$this->session->set_flashdata('notif','<div class="alert alert-danger">Data Gagal Di Edit</div>');
+			return FALSE;
+		}
 	}
 
 	public function delete ( $id )
 	{
 		$this->db->where ( 'idtot', $id );
 		
-		$this->db->delete ( 'tot' );
+		if ($this->db->delete ( 'tot' )) {
+			$this->session->set_flashdata('notif','<div class="alert alert-success">Data Berhasil Di Hapus</div>');
+			return TRUE;
+		}else{
+			$this->session->set_flashdata('notif','<div class="alert alert-danger">Data Gagal Di Hapus</div>');
+			return FALSE;
+		}
 	}
 }
