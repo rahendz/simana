@@ -33,10 +33,4 @@ $(document).ready(function(){
         var paginate = datatable.closest('.dataTables_wrapper').find('div[id$=_paginate]');
         paginate.addClass('pagination');
     });
-	$(nPaging).append(
-    '<ul class="pagination">'+
-        '<li class="prev disabled"><a href="#"><i class="icon-double-angle-left"></i> '+oLang.sPrevious+'</a></li>'+
-        '<li class="next disabled"><a href="#">'+oLang.sNext+' <i class="icon-double-angle-right"></i></a></li>'+
-    '</ul>'
-	);
 });
