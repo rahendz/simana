@@ -2,7 +2,7 @@
 	
 	<h1><span>SERTIFIKAT TOT</span><a href="" class="btn btn-primary pull-right tmargin5 rmargin15">+ TAMBAH</a></h1>
 
-		<table>
+		<table class="table table-striped table-bordered" id="datatable">
 		<thead>
 			<tr>
 				<td>No</td>

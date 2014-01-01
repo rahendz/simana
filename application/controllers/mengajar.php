@@ -13,7 +13,7 @@ class Mengajar extends CI_Controller {
 		$this->load->helper ( 'url' );
 		
 		/* MODEL */
-		$this->load->model ( array ( 'mlogin', 'mapps', 'narasumber_model' ) );
+		$this->load->model ( array ( 'mlogin', 'mapps', 'narasumber_model', 'mengajar_model' ) );
 
 		/* CHECKING AUTH USER */
 		if ( ! $this->mlogin->__is_logged() ) redirect();
@@ -30,12 +30,13 @@ class Mengajar extends CI_Controller {
 
 	public function add()
 	{
+		//print_r($this->input->post(NULL,TRUE));
 		/* ACTION FORM */
-		if ( $this->input->post ( 'submit', TRUE ) AND 
+		if ( $this->input->post ( NULL, TRUE ) )
 
-			$this->mengajar_model->add ( $this->input->post ( NULL, TRUE ) ) !== FALSE )
+			print_r ( $this->input->post ( NULL, TRUE ) );
 
-				redirect('mengajar');
+				//print_r($this->upload->data());//redirect('mengajar');
 
 		/* INITIATE CONTENT */
 		$content 					= array ( 'nama' => '', 'tempat' => '', 'jumlah' => '', 'tanggal' => '', 'catatan' => '', 'surat_penugasan' => '' );

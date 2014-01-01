@@ -3,7 +3,7 @@
 
 	<h1><span>MENGAJAR</span></h1>
 
-	<form action="{action_url}" method="post" accept-charset="utf-8" class="form-horizontal">
+	<form action="{action_url}" method="post" accept-charset="utf-8" class="form-horizontal" enctype="multipart/form-data">
 		
 		<div class="form-group col-md-6 pull-none">
 			<label class="control-label">Narasumber</label>
@@ -39,10 +39,10 @@
 
 		<div class="form-group col-md-6 pull-none">
 			<label class="control-label">Surat Penugasan</label>
-			<input type="file" name="nama" value="{nama}" />
+			<input type="file" name="surat" value="{surat}" />
 		</div>
 
-		<input type="submit" name="submit" value="submit" class="btn btn-primary">
+		<button type="submit" name="add" class="btn btn-primary">+ TAMBAH DATA</button>
 
 	</form>
 
