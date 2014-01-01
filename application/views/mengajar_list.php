@@ -1,22 +1,27 @@
-{get_header}
+<div class="content-section row">
 
-		<table>
-			<caption></caption>
-			<thead>
-				<tr>
-					<th>No</th>
-					<th>Nama</th>
-					<th>Tempat</th>
-					<th>Tanggal</th>
-					<th>Surat Penugasan</th>
-					<th>catatan</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td></td>
-				</tr>
-			</tbody>
-		</table>
+	<h1><span>MENGAJAR</span></h1>
 
-{get_footer}
+	<p>
+		<a href="<?php echo base_url('index.php/mengajar/add') ?>" class="btn btn-primary">TAMBAH MENGAJAR</a>
+	</p>
+
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>Nama</th>
+				<th>Tempat</th>
+				<th>Tanggal</th>
+				<th>Surat Penugasan</th>
+				<th>catatan</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

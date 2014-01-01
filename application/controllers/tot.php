@@ -6,30 +6,45 @@ class Tot extends CI_Controller {
 	{
 		parent::__construct();
 
-		$this->load->helper ( 'url' );
-		
-		$this->load->model ( array ( 'tot_model', 'mlogin', 'mapps' ) );
-
+		/* LIBRARY */
 		$this->load->library ( 'parser' );
 
+		/* HELPER */
+		$this->load->helper ( 'url' );
+		
+		/* MODEL */
+		$this->load->model ( array ( 'tot_model', 'mlogin', 'mapps', 'msertifikat' ) );
+
+		/* CHECKING AUTH USER */
 		if ( ! $this->mlogin->__is_logged() ) redirect();
 	}
 
 	public function index()
 	{
-		$header	= $this->mapps->nav_active();
+		/* INITIATE CONTENT */
+<<<<<<< HEAD
+		$content['tot'] = $this->tot_model->get()->result();
+		$content['notif']			= $this->session->flashdata('notif');
 		
-		$header["site_title"]	= $this->mapps->site_title() . " - " . strtoupper ( __CLASS__ );
+		/* INITIATE FOOTER */
+		$footer['tot'] 			= NULL;
 
-		$header["body_class"]	= " class=\"content\"";
+		/* INITIATE THEME */
+		$index["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
 
-		$tot['tot'] = $this->tot_model->get()->result();
+		$index["get_sidebar"]		= $this->parser->parse ( "sidebar", $sidebar, TRUE );
+
+		$index["get_content"]		= $this->parser->parse ( $view_file, $content, TRUE );
+
+		$index["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
+=======
+		$content['tot'] 	= $this->tot_model->get()->result();
+>>>>>>> origin/rahendz
+
+		$content['notif']	= $this->session->flashdata('notif');
 		
-		$tot["get_header"] = $this->parser->parse ( "header", $header, TRUE );
-
-		$tot["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
-		
-		return $this->parser->parse ( 'tot_list', $tot );
+		/* RETURN */
+		return $this->parser->parse ( "index", $this->mapps->__initiate ( 'tot_list', NULL, $content ) );
 	}
 
 	public function add()
@@ -40,21 +55,52 @@ class Tot extends CI_Controller {
 
 				redirect ( 'tot' );
 
-		$header	= $this->mapps->nav_active();
+<<<<<<< HEAD
+		/* VARIABLE */
+		$view_file	= "tot_form";
+
+		/* INITIATE HEADER */
+		$header["site_title"]	= $this->mapps->site_title() . " - Tambah " . strtoupper ( __CLASS__ );
+
+		/* INITIATE SIDEBAR */
+		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
+
+		$sidebar["is_narasumber"]	= $this->mapps->__is_active ( "narasumber" );
+
+		$sidebar["is_tot"]			= $this->mapps->__is_active ( "tot" );
+
+		$sidebar["is_mengajar"]		= $this->mapps->__is_active ( "mengajar" );
+
+		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
+
+		/* INITIATE CONTENT */
+		$content 					= array ( 'nama'=>'');
+		$content['action_url'] 		= current_url();
 		
-		$header["site_title"]	= $this->mapps->site_title() . " - Tambah " . ucwords ( strtolower ( __CLASS__ ) );
+		/* INITIATE FOOTER */
+		$footer['tot'] 			= NULL;
 
-		$header["body_class"]	= " class=\"content\"";
+		/* INITIATE THEME */
+		$index["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
 
-		$tot = array ( 'nama' => '' );
+		$index["get_sidebar"]		= $this->parser->parse ( "sidebar", $sidebar, TRUE );
 
-		$tot["action_url"] = current_url();
+		$index["get_content"]		= $this->parser->parse ( $view_file, $content, TRUE );
 
-		$tot["get_header"] = $this->parser->parse ( "header", $header, TRUE );
+		$index["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
 
-		$tot["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
+		/* RETURN */
+
+		return $this->parser->parse ( "index", $index );
+=======
+		/* INITIATE CONTENT */
+		$content 					= array ( 'nama'=>'' );
+
+		$content['action_url'] 		= current_url();
 		
-		return $this->parser->parse ( 'tot_form', $tot );
+		/* RETURN */
+		return $this->parser->parse ( "index", $this->mapps->__initiate ( 'tot_form', "Tambah " . strtoupper ( __CLASS__ ), $content ) );
+>>>>>>> origin/rahendz
 	}
 
 	public function edit ( $id = NULL )
@@ -67,21 +113,52 @@ class Tot extends CI_Controller {
 
 				redirect ( 'tot' );
 
-		$header	= $this->mapps->nav_active();
+<<<<<<< HEAD
+		/* VARIABLE */
+		$view_file	= "tot_form";
+
+		/* INITIATE HEADER */
+		$header["site_title"]	= $this->mapps->site_title() . " - Edit " . strtoupper ( __CLASS__ );
+
+		/* INITIATE SIDEBAR */
+		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
+
+		$sidebar["is_narasumber"]	= $this->mapps->__is_active ( "narasumber" );
+
+		$sidebar["is_tot"]			= $this->mapps->__is_active ( "tot" );
+
+		$sidebar["is_mengajar"]		= $this->mapps->__is_active ( "mengajar" );
+
+		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
+
+		/* INITIATE CONTENT */
+		$content 					= $this->tot_model->getById ( $id );
+		$content['action_url'] 		= current_url();
 		
-		$header["site_title"]	= $this->mapps->site_title() . " - Edit " . ucwords ( strtolower ( __CLASS__ ) );
+		/* INITIATE FOOTER */
+		$footer['tot'] 			= NULL;
 
-		$header["body_class"]	= " class=\"content\"";
+		/* INITIATE THEME */
+		$index["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
 
-		$tot = $this->tot_model->getById ( $id );
+		$index["get_sidebar"]		= $this->parser->parse ( "sidebar", $sidebar, TRUE );
 
-		$tot["action_url"] = current_url();
+		$index["get_content"]		= $this->parser->parse ( $view_file, $content, TRUE );
 
-		$tot["get_header"] = $this->parser->parse ( "header", $header, TRUE );
+		$index["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
 
-		$tot["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
+		/* RETURN */
+
+		return $this->parser->parse ( "index", $index );
+=======
+		/* INITIATE CONTENT */
+		$content 					= $this->tot_model->getById ( $id );
+
+		$content['action_url'] 		= current_url();
 		
-		return $this->parser->parse ( 'tot_form', $tot );
+		/* RETURN */
+		return $this->parser->parse ( "index", $this->mapps->__initiate ( 'tot_form', "Edit " . strtoupper ( __CLASS__ ), $content ) );
+>>>>>>> origin/rahendz
 	}
 
 	public function delete ( $id )
@@ -99,9 +176,9 @@ class Tot extends CI_Controller {
 
 		switch ( $type ) :
 
-			case "view": $this->sertifikat_view(); break;
+			case "view": return $this->sertifikat_view(); break;
 
-			case "add": $this->sertifikat_add(); break;
+			case "add": return $this->sertifikat_add(); break;
 
 			case "detail": return $this->sertifikat_detail ( $kode ); break;
 
@@ -114,7 +191,11 @@ class Tot extends CI_Controller {
 
 		protected function sertifikat_view()
 		{
-			echo "sertifikat view all";
+			/* INITIATE CONTENT */
+			$content['serts'] 			= $this->msertifikat->get()->result();
+			
+			/* RETURN */
+			return $this->parser->parse ( "index", $this->mapps->__initiate ( "sertifikat_list", "Sertifikat " . strtoupper ( __CLASS__ ), $content ) );
 		}
 
 		protected function sertifikat_add()

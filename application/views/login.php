@@ -18,7 +18,7 @@
 		{password_error}
 	</div>
 
-	<button type="submit" class="btn btn-primary pull-right">LOGIN <span class="glyphicon glyphicon-chevron-right"></span></button>
+	<button type="submit" class="btn btn-primary pull-right">LOGIN &nbsp;<span class="glyphicon glyphicon-chevron-right"></span></button>
 
 </form>
 

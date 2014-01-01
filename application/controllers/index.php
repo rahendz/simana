@@ -7,7 +7,7 @@ class Index extends CI_Controller {
 		parent::__construct();
 
 		/* LIBRARY */
-		$this->load->library ( array ( 'parser', 'session' ) );
+		$this->load->library ( 'parser' );
 
 		/* HELPER */
 		$this->load->helper ( 'url' );
@@ -22,22 +22,36 @@ class Index extends CI_Controller {
 	public function index()
 	{
 		/* VARIABLE */
-
 		$view_file	= "welcome";
 
 		/* INITIATE HEADER */
+		$header["site_title"]		= $this->mapps->site_title() . " - Home";
 
-		$header["site_title"]	= $this->mapps->site_title() . " - Home";
+		/* INITIATE SIDEBAR */
+		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
+
+		$sidebar["is_narasumber"]	= $this->mapps->__is_active ( "narasumber" );
+
+		$sidebar["is_tot"]			= $this->mapps->__is_active ( "tot" );
+
+		$sidebar["is_mengajar"]		= $this->mapps->__is_active ( "mengajar" );
+
+		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
+
+		/* INITIATE CONTENT */
+		$content['index'] 			= NULL;
+
+		/* INITIATE FOOTER */
+		$footer['index'] 			= NULL;
 
 		/* INITIATE THEME */
+		$index["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
 
-		$index["get_header"]	= $this->parser->parse ( "header", $header, TRUE );
+		$index["get_sidebar"]		= $this->parser->parse ( "sidebar", $sidebar, TRUE );
 
-		$index["get_sidebar"]	= $this->parser->parse ( "sidebar", array(), TRUE );
+		$index["get_content"]		= $this->parser->parse ( $view_file, $content, TRUE );
 
-		$index["get_content"]	= $this->parser->parse ( $view_file, array(), TRUE );
-
-		$index["get_footer"]	= $this->parser->parse ( "footer", array(), TRUE );
+		$index["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
 
 		/* RETURN */
 

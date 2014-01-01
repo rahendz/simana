@@ -6,65 +6,109 @@ class Mengajar extends CI_Controller {
 	{
 		parent::__construct();
 
-		$this->load->helper ( 'url' );
-		
-		$this->load->model ( array ( 'mlogin', 'mapps' ) );
-
+		/* LIBRARY */
 		$this->load->library ( 'parser' );
 
+		/* HELPER */
+		$this->load->helper ( 'url' );
+		
+		/* MODEL */
+<<<<<<< HEAD
+		$this->load->model ( array ( 'mlogin', 'mapps' , 'narasumber_model' ) );
+=======
+		$this->load->model ( array ( 'mlogin', 'mapps', 'narasumber_model' ) );
+>>>>>>> origin/rahendz
+
+		/* CHECKING AUTH USER */
 		if ( ! $this->mlogin->__is_logged() ) redirect();
 	}
 
 	public function index()
 	{
-		$header	= $this->mapps->nav_active();
-		
-		$header["site_title"]	= $this->mapps->site_title() . " - " . ucwords ( strtolower ( __CLASS__ ) );
+		/* INITIATE CONTENT */
+		$content['index'] 			= NULL;
 
-		$header["body_class"]	= " class=\"content\"";
-
-		$mengajar["get_header"] = $this->parser->parse ( "header", $header, TRUE );
-
-		$mengajar["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
-
-		return $this->parser->parse ( "mengajar_list", $mengajar );
+		/* RETURN */
+		return $this->parser->parse ( "index", $this->mapps->__initiate ( 'mengajar_list', strtoupper ( __CLASS__ ), $content ) );
 	}
 
 	public function add()
 	{
+		/* ACTION FORM */
+		if ( $this->input->post ( 'submit', TRUE ) AND 
 
-		if ($this->input->post('submit')) {
-			//
-		}
+<<<<<<< HEAD
+		/* ACTION FORM */
+		if ( $this->input->post ( 'submit', TRUE ) AND 
 
-		$header	= $this->mapps->nav_active();
-		
+			$this->mengajar_model->add ( $this->input->post ( NULL, TRUE ) ) !== FALSE )
+
+				redirect('mengajar');
+
+		/* VARIABLE */
+		$view_file	= "mengajar_form";
+
+		/* INITIATE HEADER */
 		$header["site_title"]	= $this->mapps->site_title() . " - Tambah " . ucwords ( strtolower ( __CLASS__ ) );
 
-		$header["body_class"]	= " class=\"content\"";
+		/* INITIATE SIDEBAR */
+		$sidebar["is_home"]			= $this->mapps->__is_active ( "home" );
 
-		$mengajar["get_header"] = $this->parser->parse ( "header", $header, TRUE );
+		$sidebar["is_narasumber"]	= $this->mapps->__is_active ( "narasumber" );
 
-		$mengajar["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
+		$sidebar["is_tot"]			= $this->mapps->__is_active ( "tot" );
 
-		return $this->parser->parse ( "mengajar_form", $mengajar );
+		$sidebar["is_mengajar"]		= $this->mapps->__is_active ( "mengajar" );
+
+		$sidebar["is_help"]			= $this->mapps->__is_active ( "help" );
+
+		/* INITIATE CONTENT */
+		$content 					= array('nama'=>'','tempat'=>'','jumlah'=>'','tanggal'=>'','catatan'=>'','surat_penugasan'=>'');
+		$content['narasumber']		= $this->narasumber_model->get();
+		//print_r($content['narasumber']);exit();
+		$content['action_url'] 		= current_url();
+
+		/* INITIATE FOOTER */
+		$footer['index'] 			= NULL;
+
+		/* INITIATE THEME */
+		$index["get_header"]		= $this->parser->parse ( "header", $header, TRUE );
+
+		$index["get_sidebar"]		= $this->parser->parse ( "sidebar", $sidebar, TRUE );
+
+		$index["get_content"]		= $this->parser->parse ( $view_file, $content, TRUE );
+
+		$index["get_footer"]		= $this->parser->parse ( "footer", $footer, TRUE );
+
+		/* RETURN */
+
+		return $this->parser->parse ( "index", $index );
+=======
+			$this->mengajar_model->add ( $this->input->post ( NULL, TRUE ) ) !== FALSE )
+
+				redirect('mengajar');
+
+		/* INITIATE CONTENT */
+		$content 					= array ( 'nama' => '', 'tempat' => '', 'jumlah' => '', 'tanggal' => '', 'catatan' => '', 'surat_penugasan' => '' );
+
+		$content['narasumber']		= $this->narasumber_model->get();
+
+		$content['action_url'] 		= current_url();
+
+		/* RETURN */
+		return $this->parser->parse ( "index", $this->mapps->__initiate ( 'mengajar_form', "Tambah " . strtoupper ( __CLASS__ ), $content ) );
+>>>>>>> origin/rahendz
+
 	}
 
 	public function edit ( $id = NULL )
 	{
 		if ( is_null ( $id ) ) redirect ( "mengajar" );
 
-		$header	= $this->mapps->nav_active();
-		
-		$header["site_title"]	= $this->mapps->site_title() . " - Ubah " . ucwords ( strtolower ( __CLASS__ ) );
+		/* INITIATE CONTENT */
+		$content['null']	= NULL;
 
-		$header["body_class"]	= " class=\"content\"";
-
-		$mengajar["get_header"] = $this->parser->parse ( "header", $header, TRUE );
-
-		$mengajar["get_footer"] = $this->parser->parse ( "footer", array(), TRUE );
-
-		return $this->parser->parse ( "mengajar_list", $mengajar );
+		return $this->parser->parse ( "index", $this->mapps->__initiate ( 'mengajar_list', strtoupper ( __CLASS__ ), $content ) );
 	}
 
 	public function delete ( $id = NULL )
