@@ -5,22 +5,12 @@ class Narasumber_model extends CI_Model{
 		parent::__construct();
 	}
 
-/*<<<<<<< HEAD
-	public function getAllNarasumber(){
-		$this->load->database();
-		$this->db->select('*');
-		$this->db->from('narasumber_biodata');
-=======*/
 	public function get()
 	{
 		$this->db->select ( '*' );
 		
 		$this->db->from ( 'narasumber_biodata' );
 		
-<<<<<<< HEAD
-/*>>>>>>> origin/rahendz*/
-=======
->>>>>>> origin/rahendz
 		$result = $this->db->get();
 
 		return $result->num_rows() > 0 ? $result->result_array() : array(
