@@ -8,26 +8,11 @@ class Mapps extends CI_Model {
 		
 	}
 
-	public function __is_active ( $page )
+	public function __is_active ( $page, $as_attr = TRUE )
 	{
-		return $this->uri->segment ( 1, 'home' ) === $page ? ' class="active"' : NULL;
-		/*$page = $this->uri->segment(1);
+		$active = $as_attr ? ' class="active"' : ' active';
 
-		$active = " class=\"active\"";
-
-		$narasumber = $mengajar = $tot = "";
-
-		switch ( $page ) :
-
-			case "narasumber": default: $narasumber = $active; break;
-
-			case "mengajar": $mengajar = $active; break;
-
-			case "tot": $tot = $active; break;
-
-		endswitch;
-
-		return array ( "is_narasumber" => $narasumber, "is_mengajar" => $mengajar, "is_tot" => $tot );*/
+		return $this->uri->segment ( 1, 'home' ) === $page ? $active : FALSE;
 	}
 
 	public function site_title()
@@ -41,15 +26,21 @@ class Mapps extends CI_Model {
 		$header["site_title"]		= $this->site_title() . " - " . ( is_null ( $title ) ? strtoupper ( __CLASS__ ) : $title );
 
 		/* INITIATE SIDEBAR */
-		$sidebar["is_home"]			= $this->__is_active ( "home" );
+		$sidebar["is_home"]						= $this->__is_active ( "home" );
 
-		$sidebar["is_narasumber"]	= $this->__is_active ( "narasumber" );
+		$sidebar["is_narasumber"]				= $this->__is_active ( "narasumber", FALSE );
 
-		$sidebar["is_tot"]			= $this->__is_active ( "tot" );
+		$sidebar["is_narasumber_collapsed"]		= $this->__is_active ( "narasumber", FALSE ) ? 'in' : 'collapse';
 
-		$sidebar["is_mengajar"]		= $this->__is_active ( "mengajar" );
+		$sidebar["is_tot"]						= $this->__is_active ( "tot", FALSE );
 
-		$sidebar["is_help"]			= $this->__is_active ( "help" );
+		$sidebar["is_tot_collapsed"]			= $this->__is_active ( "tot", FALSE ) ? 'in' : 'collapse';
+
+		$sidebar["is_mengajar"]					= $this->__is_active ( "mengajar", FALSE );
+
+		$sidebar["is_mengajar_collapsed"]		= $this->__is_active ( "mengajar", FALSE ) ? 'in' : 'collapse';
+
+		$sidebar["is_help"]						= $this->__is_active ( "help" );
 
 		/* INITIATE FOOTER */
 		$footer['tot'] 				= NULL;
