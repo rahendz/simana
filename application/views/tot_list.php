@@ -23,8 +23,8 @@
 			<td>&nbsp;</td>
 			<td>{nama}</td>
 			<td>
-				<a href="<?php echo site_url('tot/edit'); ?>/{idtot}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-				<a href="<?php echo site_url('tot/delete'); ?>/{idtot}" onClick="return confirm('Anda Yakin Akan Dihapus?')" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Hapus</a>
+				<a href="<?php echo site_url('tot/edit'); ?>/{idtot}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+				<a href="<?php echo site_url('tot/delete'); ?>/{idtot}" onClick="return confirm('Anda Yakin Akan Dihapus?')" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
 				<!-- <a href="<?php echo site_url('tot/detailTot/'.$row->idtot); ?>">detail</a> -->
 			</td>
 		</tr>

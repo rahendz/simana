@@ -7,7 +7,7 @@ class Narasumber extends CI_Controller {
 		parent::__construct();
 
 		/* LIBRARY */
-		$this->load->library ( 'parser' );
+		$this->load->library ( array('parser','session') );
 
 		/* HELPER */
 		$this->load->helper ( 'url' );
@@ -49,7 +49,6 @@ class Narasumber extends CI_Controller {
 
 	public function edit ( $id = NULL )
 	{
-		if ( is_null ( $id ) ) redirect ( 'narasumber' );
 
 		if ( $this->input->post ( 'submit', TRUE ) AND 
 

@@ -22,6 +22,7 @@ class Tot extends CI_Controller {
 	public function index()
 	{
 		/* INITIATE CONTENT */
+
 		$content['tot'] 	= $this->tot_model->get()->result();
 
 		$content['notif']	= $this->session->flashdata('notif');
@@ -56,6 +57,7 @@ class Tot extends CI_Controller {
 			$this->tot_model->edit ( $this->input->post ( NULL, TRUE ), $id ) !== FALSE )
 
 				redirect ( 'tot' );
+
 
 		/* INITIATE CONTENT */
 		$content 					= $this->tot_model->getById ( $id );

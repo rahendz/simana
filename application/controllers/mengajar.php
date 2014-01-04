@@ -13,6 +13,8 @@ class Mengajar extends CI_Controller {
 		$this->load->helper ( 'url' );
 		
 		/* MODEL */
+		$this->load->model ( array ( 'mlogin', 'mapps', 'narasumber_model' ) );
+
 		$this->load->model ( array ( 'mlogin', 'mapps', 'narasumber_model', 'mengajar_model' ) );
 
 		/* CHECKING AUTH USER */
