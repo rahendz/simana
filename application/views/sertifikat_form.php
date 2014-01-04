@@ -8,11 +8,17 @@
 		<div class="form-group bmargin30">
 			<label class="control-label col-md-2 lalign">Narasumber</label>
 			<div class="col-md-5">
-				<select name="idnarasumber" id="e1" data-placeholder="Pilih Narasumber" style="width:100%;">
+				<select name="idnarasumber" id="e1" data-placeholder="Pilih Narasumber" style="width:100%;"{disabled}>
 					<option value=""></option>
-					{narasumber}
-						<option value="{idnarasumber_biodata}">{nama}</option>
-					{/narasumber}
+					<?php foreach ( $narasumber as $n ) : ?>
+						<option value="<?php echo $n['idnarasumber_biodata'] ?>"<?php 
+
+							echo $n['idnarasumber_biodata'] === $narasumber_biodata_idnarasumber_biodata ? ' selected="selected"' : NULL 
+
+							?>>
+							<?php echo $n['nama'] ?>
+						</option>
+					<?php endforeach; ?>
 				</select>
 			</div>
 		</div>
@@ -20,32 +26,38 @@
 		<div class="form-group bmargin30">
 			<label class="control-label col-md-2 lalign">Nomor Sertifikat</label>
 			<div class="col-md-5">
-				<input class="form-control" type="text" name="tempat" value="{tempat}" placeholder="Tempat Penugasan" />
+				<input class="form-control" type="text" name="nomor" value="{nomor}" placeholder="Nomor Sertifikat" />
 			</div>
 		</div>
 
 		<div class="form-group bmargin30">
 			<label class="control-label col-md-2 lalign">Nilai</label>
 			<div class="col-md-2">
-				<input class="form-control" type="text" name="tanggal" value="{tanggal}" id="datepicker" placeholder="Tanggal Penugasan"/>
+				<input class="form-control" type="text" name="nilai" value="{nilai}" placeholder="Nilai"/>
 			</div>
 		</div>
 
 		<div class="form-group bmargin30">
 			<label class="control-label col-md-2 lalign">Jenis TOT</label>
-			<div class="col-md-4">
-				<select name="jumlah" style="width:100%;" data-placeholder="Jumlah Penugasan">
+			<div class="col-md-5">
+				<select name="idtot" style="width:100%;" data-placeholder="Jumlah Penugasan">
 					<option value=""></option>
-					<?php for($j=1;$j<11;$j++) : ?>
-						<option value="<?php echo $j ?>"><?php echo $j ?></option>
-					<?php endfor; ?>
+					<?php foreach ( $tot as $t ) : ?>
+						<option value="<?php echo $t->idtot ?>"<?php 
+
+							echo $t->idtot === $tot_idtot ? ' selected="selected"' : NULL 
+
+							?>>
+							<?php echo $t->nama ?>
+						</option>
+					<?php endforeach; ?>
 				</select>
 			</div>
 		</div>
 
 		<div class="form-group bmargin30">
 			<div class="col-md-offset-2 col-md-3">
-				<button type="submit" name="add" class="btn btn-primary">+ TAMBAH DATA</button>
+				<button type="submit" name="add" class="btn btn-primary">+ {tipe} DATA</button>
 			</div>
 		</div>
 

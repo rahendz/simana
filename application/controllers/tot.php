@@ -87,7 +87,7 @@ class Tot extends CI_Controller {
 
 			case "add": return $this->sertifikat_add(); break;
 
-			case "detail": return $this->sertifikat_detail ( $kode ); break;
+			case "edit": return $this->sertifikat_edit ( $kode ); break;
 
 			case "delete": return $this->sertifikat_delete ( $kode ); break;
 
@@ -108,7 +108,31 @@ class Tot extends CI_Controller {
 
 		protected function sertifikat_add()
 		{
+			if ( $this->input->post ( NULL, TRUE ) )
+
+				if ( $this->msertifikat->add() )
+
+					print_r ( "sukses" );
+
+				else print_r("gagal");
+
+			$content = array ( 
+
+				"idsertifikat_tot" => "", "narasumber_biodata_idnarasumber_biodata" => "", 
+
+				"nomor" => "", "nilai" => "", "tot_idtot" => "" 
+
+				);
+
 			$content['narasumber']	= $this->narasumber_model->get();
+
+			$content['tot'] = $this->tot_model->get()->result();
+
+			$content['action_url'] = current_url();
+
+			$content['disabled'] = NULL;
+
+			$content['tipe']	= "TAMBAH";
 
 			$data = $this->mapps->__initiate ( "sertifikat_form", "Tambah Sertifikat " . strtoupper ( __CLASS__ ), $content );
 
@@ -116,14 +140,40 @@ class Tot extends CI_Controller {
 			return $this->parser->parse ( "index", $data );
 		}
 
-		protected function sertifikat_detail()
+		protected function sertifikat_edit ( $sid )
 		{
-			echo "sertifikat detail";
+
+			if ( $this->input->post ( NULL, TRUE ) )
+
+				if ( $this->msertifikat->edit ( $sid ) !== FALSE )
+
+					redirect ( 'tot/sertifikat/edit/' . $sid );
+
+				else print_r('gagal');
+
+			$content = $this->msertifikat->getById ( $sid );
+
+			$content['narasumber']	= $this->narasumber_model->get();
+
+			$content['tot'] = $this->tot_model->get()->result();
+
+			$content['action_url'] = current_url();
+
+			$content['disabled'] = ' disabled="disabled"';
+
+			$content['tipe']	= "UBAH";
+
+			$data = $this->mapps->__initiate ( "sertifikat_form", "Edit Sertifikat " . strtoupper ( __CLASS__ ), $content );
+
+			/* RETURN */
+			return $this->parser->parse ( "index", $data );
 		}
 
-		protected function sertifikat_delete()
+		protected function sertifikat_delete ( $sid )
 		{
-			echo "sertifikat delete";
+			$this->msertifikat->delete ( $sid );
+
+			redirect ( 'tot/sertifikat' );
 		}
 
 }

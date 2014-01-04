@@ -24,7 +24,7 @@
 				<td>{tot}</td>
 				<td>
 					<a href="<?php echo site_url('tot/sertifikat/edit'); ?>/{idsertifikat_tot}">edit</a>| 
-					<a href="<?php echo site_url('tot/sertifikat/delete'); ?>/{idsertikat_tot}" onClick="return confirm('Anda Yakin Akan Dihapus?');">delete</a>| 
+					<a href="<?php echo site_url('tot/sertifikat/delete'); ?>/{idsertifikat_tot}" onClick="return confirm('Anda Yakin Akan Dihapus?');">delete</a>| 
 					<!-- <a href="<?php echo site_url('tot/sertifikat/detail'); ?>/{idsertikat_tot}">detail</a> -->
 				</td>
 			</tr>
