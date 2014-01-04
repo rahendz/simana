@@ -12,23 +12,41 @@ class Mengajar_model extends CI_Model {
 		return $this->db->get();
 	}
 
-	public function add ( $data )
+	public function add()
 	{
-		$init['upload_path'] 	= './uploads/';
+		$this->load->model ( 'narasumber_model' );
+
+		$data = (object) $this->input->post ( NULL, TRUE );
+
+		$this->db->set( 'tempat', $data->tempat );
+
+		$this->db->set( 'jumlah', $data->jumlah );
+
+		$this->db->set( 'tanggal', date ( "Y-m-d", strtotime ( $data->tanggal ) ) );
+
+		$this->db->set( 'catatan', $data->catatan );
+
+		$this->db->set( 'narasumber_biodata_idnarasumber_biodata', $data->idnarasumber );
+
+		if ( $this->db->insert ( 'mengajar' ) === FALSE ) return FALSE;
+
+		$mid = $this->db->insert_id();
+
+		$ndata = (object) $this->narasumber_model->getById ( $data->idnarasumber );
+
+		$mnama = str_replace ( ' ', '_', strtolower ( trim ( $ndata->nama ) ) );
+
+		$mtgl = strtotime ( $data->tanggal );
+
+		$init['upload_path'] 	= './uploads/surat-penugasan/';
 		$init['allowed_types'] 	= 'gif|jpg|png';
-		$init['max_size'] 		= '100000';
+		$init['max_size'] 		= '1000';
 		$init['overwrite'] 		= TRUE;
-		$init['file_name'] 		= 'mengajar-' . $data["idnarasumber"];
+		$init['file_name'] 		= 'sp-' . $mid . '-' . $mnama . '-' . $mtgl . '-' . $data->idnarasumber;
 
-		$this->load->library('upload',$init);
+		$this->load->library ( 'upload', $init );
 
-		if ( $this->upload->do_upload() )
-
-			return $this->upload->data();
-
-		else
-
-			return $data;
+		return $this->upload->do_upload() ? TRUE : FALSE;
 	}
 
 }

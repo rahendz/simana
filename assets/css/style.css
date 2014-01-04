@@ -2,6 +2,7 @@
 @font-face{font-family:'sgl';src:url('../fonts/segoeuil.ttf') format('truetype');}
 
 html,body{margin:0;padding:0;width:100%;height:100%;color:#666;font-family:sg;font-size:90%;line-height:170%;}
+a:focus,button:focus {outline:none !important;}
 
 .ralign{text-align:right !important;}
 .lalign{text-align:left !important;}
@@ -9,7 +10,10 @@ html,body{margin:0;padding:0;width:100%;height:100%;color:#666;font-family:sg;fo
 .talign{vertical-align:top !important;}
 .balign{vertical-align:bottom !important;}
 .malign{vertical-align:middle !important;}
+
 .pull-none{float:none !important;}
+.pull-block{display:block !important;}
+.pull-center{display:block !important;text-align:center !important;}
 
 .tdefault{color:#FFF !important;}
 .tprimary{color:#428bca !important;}
@@ -17,6 +21,11 @@ html,body{margin:0;padding:0;width:100%;height:100%;color:#666;font-family:sg;fo
 .twarning{color:#f0ad4e !important;}
 .tsuccess{color:#47a447 !important;}
 .tinfo{color:#39b3d7 !important;}
+
+.btn-link{padding:0;font-weight:normal;cursor:pointer;}
+
+.clearafter:after{display:table;content:"";clear:both;}
+.clearbefore:before{display:table;content:"";clear:both;}
 
 /* OVERRIDE */
 .help-block.alert-danger{background:none;}
@@ -47,14 +56,14 @@ body > .container > .row{height:100%;}
 .sidebar > .menu > .menu-section{margin-top:30px;}
 .sidebar > .menu > .menu-section > ul{padding:0;margin:0;list-style:none;margin-left:30px;}
 .sidebar > .menu > .menu-section > ul > li{margin-bottom:10px;border:none;}
-.sidebar > .menu > .menu-section > ul > li > a{background:#FFF;display:block;padding:10px 20px;color:#4787ed;border-left:3px solid #FFF;border-right:3px solid #4787ed;font-size:110%;
+.sidebar > .menu > .menu-section > ul > li > a{background:#FFF;display:block;padding:10px 20px;color:#4787ed;border-right:3px solid #4787ed;font-size:110%;
 -webkit-transition: all .3s ease-in-out;
    -moz-transition: all .3s ease-in-out;
     -ms-transition: all .3s ease-in-out;
      -o-transition: all .3s ease-in-out;
         transition: all .3s ease-in-out;
         }
-.sidebar > .menu > .menu-section > ul > li > a:hover{text-decoration:none;color:#3078eb;border-left:3px solid #4787ed;border-right:3px solid #FFF;
+.sidebar > .menu > .menu-section > ul > li > a:hover{text-decoration:none;color:#3078eb;border-right:3px solid #EFEFEF;
 -webkit-transition: all .3s ease-in-out;
    -moz-transition: all .3s ease-in-out;
     -ms-transition: all .3s ease-in-out;
@@ -74,3 +83,7 @@ body > .container > .row{height:100%;}
 .content-section{background:#FFF;margin-left:30px;box-shadow:-5px 0 20px rgba(0,0,0,0.1);padding:10px 20px;}
 .content-section > h1{padding:0;margin:0;color:#4787ed;font-family:sgl;border-bottom:1px solid #EEE;line-height:normal;margin-bottom:20px;}
 .content-section > h1 > span{border-bottom:2px solid #4787ed;padding:0 10px;}
+
+/* SELECT2 OVERRIDE */
+.select2-container .select2-choice{height:auto !important;}
+.select2-container .select2-choice div b{background-position:-31px 4px !important;}

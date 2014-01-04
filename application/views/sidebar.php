@@ -6,7 +6,7 @@
 		<p><a href="<?php echo site_url("logout") ?>" class="btn btn-primary logout"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp; LOGOUT</a></p>
 
 		<div class="copyright">
-			<p><a data-toggle="modal" data-target="#aboutdevel">About Developer</a></p>
+			<p><button data-toggle="modal" data-target="#aboutdevel" class="btn btn-link">About Developer</button></p>
 			<p>Copyright 2013 <a href="">SIMANA&trade;</a></p>
 			<p>All Rights Reserved.</p>
 		</div>
@@ -30,88 +30,41 @@
 
 		<li{is_home}><a href="<?php echo base_url() ?>">+ HOME</a></li>
 		
-		<li{is_narasumber}><a href="<?php echo site_url ( "narasumber" ) ?>">+ NARASUMBER</a></li>
+		<!-- <li{is_narasumber}><a href="<?php //echo site_url ( "narasumber" ) ?>">+ NARASUMBER</a></li>
 		
-		<li{is_tot}><a href="<?php echo site_url ( "tot" ) ?>">+ TOT</a></li>
+		<li{is_tot}><a href="<?php //echo site_url ( "tot" ) ?>">+ TOT</a></li>
 		
-		<li{is_mengajar}><a href="<?php echo site_url ( "mengajar" ) ?>">+ MENGAJAR</a></li>
+		<li{is_mengajar}><a href="<?php //echo site_url ( "mengajar" ) ?>">+ MENGAJAR</a></li> -->
 		
-		<!-- <li class="panel">
+		<li class="panel{is_narasumber}">
 			<a href="#narasumber" data-toggle="collapse" data-parent="#pagemenu">+ NARASUMBER</a>
-			<ul id="narasumber" class="collapse">
-				<li><a href="" title="">Daftar Narasumber</a></li>
-				<li><a href="" title="">Tambah Narasumber</a></li>
+			<ul id="narasumber" class="{is_narasumber_collapsed}">
+				<li><a href="<?php echo site_url ( "narasumber" ) ?>">Daftar Narasumber</a></li>
+				<li><a href="<?php echo site_url ( "narasumber/add" ) ?>">Tambah Narasumber</a></li>
 			</ul>
 		</li>
 
-		<li class="panel">
+		<li class="panel{is_mengajar}">
 			<a href="#mengajar" data-toggle="collapse" data-parent="#pagemenu">+ MENGAJAR</a>
-			<ul id="mengajar" class="collapse">
-				<li><a href="" title="">Daftar Mengajar</a></li>
-				<li><a href="" title="">Tambah Mengajar</a></li>
-				<li><a href="" title="">Unggah Surat Penugasan</a></li>
+			<ul id="mengajar" class="{is_mengajar_collapsed}">
+				<li><a href="<?php echo site_url ( "mengajar" ) ?>">Daftar Mengajar</a></li>
+				<li><a href="<?php echo site_url ( "mengajar/add" ) ?>">Tambah Mengajar</a></li>
+				<li><a href="">Unggah Surat Penugasan</a></li>
 			</ul>
 		</li>
 
-		<li class="panel">
+		<li class="panel{is_tot}">
 			<a href="#tot" data-toggle="collapse" data-parent="#pagemenu">+ TOT</a>
-			<ul id="tot" class="collapse">
-				<li><a href="" title="">Daftar TOT</a></li>
-				<li><a href="" title="">Tambah TOT</a></li>
-				<li><a href="" title="">Data Sertifikat TOT</a></li>
+			<ul id="tot" class="{is_tot_collapsed}">
+				<li><a href="<?php echo site_url ( "tot" ) ?>">Daftar TOT</a></li>
+				<li><a href="<?php echo site_url ( "tot/add" ) ?>">Tambah TOT</a></li>
+				<li><a href="<?php echo site_url ( "tot/sertifikat" ) ?>">Data Sertifikat TOT</a></li>
 			</ul>
-		</li> -->
+		</li>
 
 		<li{is_help}><a href="<?php echo site_url ( "help" ) ?>">+ HELP</a></li>
 		
 	</ul>
-
-		<!-- <div class="panel-group" id="accordion">
-		  
-		  <div class="panel panel-default">
-		    <div class="panel-heading">
-		      <h4 class="panel-title">
-		        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-		          NARASUMBER
-		        </a>
-		      </h4>
-		    </div>
-		    <div id="collapseOne" class="panel-collapse collapse in">
-		      <div class="panel-body">
-		        Anim pariatur cliche reprehenderit
-		      </div>
-		    </div>
-		  </div>
-
-		  <div class="panel panel-default">
-		    <div class="panel-heading">
-		      <h4 class="panel-title">
-		        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-		          Collapsible Group Item #2
-		        </a>
-		      </h4>
-		    </div>
-		    <div id="collapseTwo" class="panel-collapse collapse">
-		      <div class="panel-body">
-		        Anim pariatur cliche reprehenderit
-		      </div>
-		    </div>
-		  </div>
-		  <div class="panel panel-default">
-		    <div class="panel-heading">
-		      <h4 class="panel-title">
-		        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-		          Collapsible Group Item #3
-		        </a>
-		      </h4>
-		    </div>
-		    <div id="collapseThree" class="panel-collapse collapse">
-		      <div class="panel-body">
-		        Anim pariatur cliche reprehenderit
-		      </div>
-		    </div>
-		  </div>
-		</div> -->
 
 	</div>
 </div>
