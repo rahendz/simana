@@ -42,9 +42,17 @@ class Mengajar_model extends CI_Model {
 		$init['allowed_types'] 	= 'gif|jpg|png';
 		$init['max_size'] 		= '1000';
 		$init['overwrite'] 		= TRUE;
-		$init['file_name'] 		= 'sp-' . $mid . '-' . $mnama . '-' . $mtgl . '-' . $data->idnarasumber;
+		$init['file_name'] 		= 'sp-' . $mid . '-' . $mnama . '-' . $mtgl . '-' . $data->idnarasumber . '.jpg';
 
 		$this->load->library ( 'upload', $init );
+
+		$file = (object) $this->upload->data();
+
+		$this->db->set( 'surat_penugasan', $file->file_name );
+
+		$this->db->where ( 'idmengajar', $mid );
+
+		if ( $this->db->update ( 'mengajar' ) === FALSE ) return FALSE;
 
 		return $this->upload->do_upload() ? TRUE : FALSE;
 	}
