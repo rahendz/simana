@@ -13,7 +13,7 @@ class Tot extends CI_Controller {
 		$this->load->helper ( 'url' );
 		
 		/* MODEL */
-		$this->load->model ( array ( 'tot_model', 'mlogin', 'mapps', 'msertifikat' ) );
+		$this->load->model ( array ( 'tot_model', 'mlogin', 'mapps', 'msertifikat', 'narasumber_model' ) );
 
 		/* CHECKING AUTH USER */
 		if ( ! $this->mlogin->__is_logged() ) redirect();
@@ -98,6 +98,7 @@ class Tot extends CI_Controller {
 
 		protected function sertifikat_view()
 		{
+			// echo '<pre>';print_r($this->msertifikat->get()->result());exit;
 			/* INITIATE CONTENT */
 			$content['serts'] 			= $this->msertifikat->get()->result();
 			
@@ -107,7 +108,12 @@ class Tot extends CI_Controller {
 
 		protected function sertifikat_add()
 		{
-			echo "sertifikat add";
+			$content['narasumber']	= $this->narasumber_model->get();
+
+			$data = $this->mapps->__initiate ( "sertifikat_form", "Tambah Sertifikat " . strtoupper ( __CLASS__ ), $content );
+
+			/* RETURN */
+			return $this->parser->parse ( "index", $data );
 		}
 
 		protected function sertifikat_detail()

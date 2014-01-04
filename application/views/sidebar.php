@@ -59,6 +59,7 @@
 				<li><a href="<?php echo site_url ( "tot" ) ?>">Daftar TOT</a></li>
 				<li><a href="<?php echo site_url ( "tot/add" ) ?>">Tambah TOT</a></li>
 				<li><a href="<?php echo site_url ( "tot/sertifikat" ) ?>">Data Sertifikat TOT</a></li>
+				<li><a href="<?php echo site_url ( "tot/sertifikat/add" ) ?>">Tambah Sertifikat TOT</a></li>
 			</ul>
 		</li>
 
