@@ -68,8 +68,8 @@
 			<tr>
 				<td></td>
 				<td><?php echo $value->nama; ?></td>
-				<td>Bulan</td>
-				<td>Tahun</td>
+				<td><?php echo $bulan[$this->input->post('bulan')] ?></td>
+				<td><?php echo $$this->input->post('tahun') ?></td>
 				<td><?php echo $value->jumlah_ngajar ?></td>
 			</tr>
 

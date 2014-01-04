@@ -25,8 +25,6 @@ class Rekap extends CI_Controller {
 
 			$content['cekRekap'] = $this->mrekap->bulanan() ;
 
-			//print_r($content['cekRekap']);exit();
-
 		}
 
 		/* INITIATE CONTENT */
