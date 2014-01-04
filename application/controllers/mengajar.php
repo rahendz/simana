@@ -35,13 +35,7 @@ class Mengajar extends CI_Controller {
 		/* ACTION FORM */
 		if ( $this->input->post ( NULL, TRUE ) )
 
-<<<<<<< HEAD
-			$this->mengajar_model->add ( $this->input->post ( NULL, TRUE ) ) !== FALSE )
-
-			print_r ( $this->input->post ( NULL, TRUE ) );
-=======
 			if ( $this->mengajar_model->add() ) print_r ( "sukses" );
->>>>>>> origin/rahendz
 
 				else print_r ( "gagal" );
 

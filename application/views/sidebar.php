@@ -62,6 +62,8 @@
 			</ul>
 		</li>
 
+		<li{is_rekap}><a href="<?php echo site_url ( "rekap" ) ?>">+ REKAP</a></li>
+
 		<li{is_help}><a href="<?php echo site_url ( "help" ) ?>">+ HELP</a></li>
 		
 	</ul>
