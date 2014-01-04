@@ -52,7 +52,34 @@
 
 <div class="content-section">
 
-	telo
+	<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>Nama</th>
+				<th>Bulan</th>
+				<th>Tahun</th>
+				<th>Jumlah</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php if(!empty($cekRekap)): foreach ($cekRekap as $value) :?>
+
+			<tr>
+				<td></td>
+				<td><?php echo $value->nama; ?></td>
+				<td>Bulan</td>
+				<td>Tahun</td>
+				<td><?php echo $value->jumlah_ngajar ?></td>
+			</tr>
+
+			<?php endforeach; else: ?>
+			<tr>
+				<td colspan="4">empty</td>
+			</tr>
+			<?php endif; ?>
+		</tbody>
+	</table>
 
 </div>
 
