@@ -11,7 +11,7 @@ class Rekap extends CI_Controller {
 		$this->load->helper ( 'url' );
 		
 		/* MODEL */
-		$this->load->model ( array ( 'mlogin', 'mapps', 'narasumber_model', 'mengajar_model' ) );
+		$this->load->model ( array ( 'mlogin', 'mapps', 'narasumber_model' , 'mrekap') );
 
 		/* CHECKING AUTH USER */
 		if ( ! $this->mlogin->__is_logged() ) redirect();
@@ -21,12 +21,14 @@ class Rekap extends CI_Controller {
 	public function index(){
 
 		/* ACTION FORM */
-		if ( $this->input->post ( NULL, TRUE ) ) 
+		if ( $this->input->post ( NULL, TRUE ) ) {
 
-			if ( $this->mengajar_model->add() ) print_r ( "sukses" );
+			$content['cekRekap'] = $this->mrekap->bulanan() ;
 
-				else print_r ( "gagal" );
-				
+			//print_r($content['cekRekap']);exit();
+
+		}
+
 		/* INITIATE CONTENT */
 		$content['index'] 			= NULL;
 
