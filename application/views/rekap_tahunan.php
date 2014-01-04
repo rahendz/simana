@@ -1,7 +1,8 @@
 <div class="content-section">
-	<h1><span>REKAP Per BULAN</span></h1>
 
-	<form action="{action_url}" method="post" accept-charset="utf-8" class="form-horizontal">
+	<h1><span>REKAP Per Tahun</span></h1>
+
+		<form action="{action_url}" method="post" accept-charset="utf-8" class="form-horizontal">
 		
 		<div class="form-group bmargin30">
 			<label class="control-label col-md-2 lalign">Narasumber</label>
@@ -28,18 +29,6 @@
 		</div>
 
 		<div class="form-group bmargin30">
-			<label class="control-label col-md-2 lalign">Bulan</label>
-			<div class="col-md-3">
-				<select name="bulan" style="width:100%;" data-placeholder="Bulan">
-					<option value=""></option>
-					<?php foreach($bulan as $key => $value ) : ?>
-						<option value="<?php echo $key ?>"><?php echo $value ?></option>
-					<?php endforeach; ?>
-				</select>
-			</div>
-		</div>
-
-		<div class="form-group bmargin30">
 			<div class="col-md-offset-2 col-md-3">
 				<button type="submit" name="add" class="btn btn-primary">+ CEK REKAP</button>
 			</div>
@@ -57,7 +46,6 @@
 			<tr>
 				<th>No</th>
 				<th>Nama</th>
-				<th>Bulan</th>
 				<th>Tahun</th>
 				<th>Jumlah</th>
 			</tr>
@@ -68,14 +56,13 @@
 			<tr>
 				<td></td>
 				<td><?php echo $value->nama; ?></td>
-				<td><?php echo $bulan[$this->input->post('bulan')] ?></td>
 				<td><?php echo $this->input->post('tahun') ?></td>
 				<td><?php echo $value->jumlah_ngajar ?></td>
 			</tr>
 
 			<?php endforeach; else: ?>
 			<tr>
-				<td colspan="5">empty</td>
+				<td colspan="4">empty</td>
 			</tr>
 			<?php endif; ?>
 		</tbody>

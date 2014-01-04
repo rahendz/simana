@@ -41,4 +41,25 @@ class Rekap extends CI_Controller {
 		return $this->parser->parse ( "index", $this->mapps->__initiate ( 'rekap_form', strtoupper ( __CLASS__ ), $content ) );
 
 	}
+
+	public function tahunan()
+	{
+		
+		/* ACTION FORM */
+		if ( $this->input->post ( NULL, TRUE ) ) {
+
+			$content['cekRekap'] = $this->mrekap->tahunan() ;
+
+		}
+		/* INITIATE CONTENT */
+		$content['index'] 			= NULL;
+
+		$content['narasumber']		= $this->narasumber_model->get();
+
+		$content['action_url'] 		= current_url();
+
+
+		/* RETURN */
+		return $this->parser->parse ( "index", $this->mapps->__initiate ( 'rekap_tahunan', strtoupper ( __CLASS__ ), $content ) );
+	}
 }
