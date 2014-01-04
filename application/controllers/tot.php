@@ -108,9 +108,15 @@ class Tot extends CI_Controller {
 
 		protected function sertifikat_add()
 		{
+			if ( $this->input->post ( NULL, TRUE ) )
+
+				print_r ( $this->input->post ( NULL, TRUE ) );
+			
 			$content['narasumber']	= $this->narasumber_model->get();
 
 			$content['tot'] = $this->tot_model->get()->result_array();
+
+			$content['action_url'] = current_url();
 
 			$data = $this->mapps->__initiate ( "sertifikat_form", "Tambah Sertifikat " . strtoupper ( __CLASS__ ), $content );
 
