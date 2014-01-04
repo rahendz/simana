@@ -67,7 +67,7 @@
 			<a href="#rekap" data-toggle="collapse" data-parent="#pagemenu">+ REKAP</a>
 			<ul id="rekap" class="{is_rekap_collapsed}">
 				<li><a href="<?php echo site_url ( "rekap" ) ?>">Rekap Per Bulan</a></li>
-				<li><a href="<?php echo site_url ( "rekap/tahunan" ) ?>">Tambah TOT</a></li>
+				<li><a href="<?php echo site_url ( "rekap/tahunan" ) ?>">Rekap Per Tahun</a></li>
 			</ul>
 		</li>
 
