@@ -11,7 +11,7 @@
 	<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="datatable">
 		<thead>
 			<tr>
-				<!-- <td>No</td> -->
+				<td>No</td>
 				<td>Nama</td>
 				<td>Instansi</td>
 				<td>Lokasi</td>
@@ -23,12 +23,10 @@
 
 		<tbody>
 			
-			<?php $i = 1; ?>
-
 			{narasumber}
 			
 			<tr>
-				<!-- <td><?php echo $i++; ?></td> -->
+				<td></td>
 				<td>{nama}</td>
 				<td>{instansi}</td>
 				<td>{lokasi}</td>

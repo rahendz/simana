@@ -1,26 +1,27 @@
 <div class="content-section">
 	
-	<h1><span>SERTIFIKAT TOT</span><a href="" class="btn btn-primary pull-right tmargin5 rmargin15">+ TAMBAH</a></h1>
+	<h1><span>SERTIFIKAT TOT</span></h1>
 
 		<table class="table table-striped table-bordered" id="datatable">
 		<thead>
 			<tr>
 				<td>No</td>
+				<td>Nama</td>
 				<td>Nomor</td>
 				<td>Nilai</td>
-				<td>ID</td>
+				<td>Jenis TOT</td>
 				<td>Aksi</td>
 			</tr>
 		</thead>
 
 		<tbody>
-			<?php $i = 1; ?>
 			{serts}
 			<tr>
-				<td><?php echo $i++; ?></td>
+				<td></td>
+				<td>{nama}</td>
 				<td>{nomor}</td>
 				<td>{nilai}</td>
-				<td>{tot_idtot}</td>
+				<td>{tot}</td>
 				<td>
 					<a href="<?php echo site_url('tot/sertifikat/edit'); ?>/{idsertifikat_tot}">edit</a>| 
 					<a href="<?php echo site_url('tot/sertifikat/delete'); ?>/{idsertikat_tot}" onClick="return confirm('Anda Yakin Akan Dihapus?');">delete</a>| 
