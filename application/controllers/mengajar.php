@@ -33,7 +33,7 @@ class Mengajar extends CI_Controller {
 	public function add()
 	{
 		/* ACTION FORM */
-		if ( $this->input->post ( NULL, TRUE ) )
+		if ( $this->input->post ( NULL, TRUE ) ) 
 
 			if ( $this->mengajar_model->add() ) print_r ( "sukses" );
 
