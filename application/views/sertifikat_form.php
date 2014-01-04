@@ -20,25 +20,25 @@
 		<div class="form-group bmargin30">
 			<label class="control-label col-md-2 lalign">Nomor Sertifikat</label>
 			<div class="col-md-5">
-				<input class="form-control" type="text" name="tempat" value="{tempat}" placeholder="Tempat Penugasan" />
+				<input class="form-control" type="text" name="nomor" placeholder="Nomor Sertifikat" />
 			</div>
 		</div>
 
 		<div class="form-group bmargin30">
 			<label class="control-label col-md-2 lalign">Nilai</label>
 			<div class="col-md-2">
-				<input class="form-control" type="text" name="tanggal" value="{tanggal}" id="datepicker" placeholder="Tanggal Penugasan"/>
+				<input class="form-control" type="text" name="nilai" placeholder="Nilai"/>
 			</div>
 		</div>
 
 		<div class="form-group bmargin30">
 			<label class="control-label col-md-2 lalign">Jenis TOT</label>
-			<div class="col-md-4">
-				<select name="jumlah" style="width:100%;" data-placeholder="Jumlah Penugasan">
+			<div class="col-md-5">
+				<select name="idtot" style="width:100%;" data-placeholder="Jumlah Penugasan">
 					<option value=""></option>
-					<?php for($j=1;$j<11;$j++) : ?>
-						<option value="<?php echo $j ?>"><?php echo $j ?></option>
-					<?php endfor; ?>
+					{tot}
+						<option value="{idtot}">{nama}</option>
+					{/tot}
 				</select>
 			</div>
 		</div>

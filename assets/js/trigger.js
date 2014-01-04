@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$("select").select2();
 	var oTable = $("#datatable").dataTable({
 		"sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
+        "sPaginationType": "full_numbers",
 		"oLanguage": {
         	"sLengthMenu": "_MENU_",
                 "sSearch": ""

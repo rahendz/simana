@@ -110,6 +110,8 @@ class Tot extends CI_Controller {
 		{
 			$content['narasumber']	= $this->narasumber_model->get();
 
+			$content['tot'] = $this->tot_model->get()->result_array();
+
 			$data = $this->mapps->__initiate ( "sertifikat_form", "Tambah Sertifikat " . strtoupper ( __CLASS__ ), $content );
 
 			/* RETURN */
