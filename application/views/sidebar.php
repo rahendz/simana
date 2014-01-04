@@ -63,7 +63,13 @@
 			</ul>
 		</li>
 
-		<li{is_rekap}><a href="<?php echo site_url ( "rekap" ) ?>">+ REKAP</a></li>
+		<li class="panel{is_rekap}">
+			<a href="#rekap" data-toggle="collapse" data-parent="#pagemenu">+ REKAP</a>
+			<ul id="rekap" class="{is_rekap_collapsed}">
+				<li><a href="<?php echo site_url ( "rekap" ) ?>">Rekap Per Bulan</a></li>
+				<li><a href="<?php echo site_url ( "rekap/tahunan" ) ?>">Tambah TOT</a></li>
+			</ul>
+		</li>
 
 		<li{is_help}><a href="<?php echo site_url ( "help" ) ?>">+ HELP</a></li>
 		

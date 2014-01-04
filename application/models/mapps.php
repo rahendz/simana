@@ -45,7 +45,9 @@ class Mapps extends CI_Model {
 
 		$sidebar["is_mengajar_collapsed"]		= $this->__is_active_child ( "mengajar" ) ? 'in' : 'collapse';
 
-		$sidebar["is_rekap"]					= $this->__is_active ( "rekap" );
+		$sidebar["is_rekap"]					= $this->__is_active ( "rekap" , FALSE);
+
+		$sidebar["is_rekap_collapsed"]			= $this->__is_active_child ( "mengajar" ) ? 'in' : 'collapse';
 
 		$sidebar["is_help"]						= $this->__is_active ( "help" );
 
