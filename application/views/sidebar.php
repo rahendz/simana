@@ -71,7 +71,7 @@
 			</ul>
 		</li>
 
-		<li{is_help}><a href="<?php echo site_url ( "help" ) ?>">+ HELP</a></li>
+		<!-- <li{is_help}><a href="<?php echo site_url ( "help" ) ?>">+ HELP</a></li> -->
 		
 	</ul>
 
